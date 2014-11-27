@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.Pore;
 import net.amigocraft.pore.util.*;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.*;
@@ -126,18 +127,13 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	}
 
 	@Override
-	public int getEntityId() { // note to self - this is unique to Bukkit and not the same as a unique ID
+	public int getEntityId() { // note to self - this is the ID of the entity in the world, and unrelated to its UUID
 		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getFireTicks() {
-		/*if (getHandle() instanceof Flammable){
-			return ((Flammable)getHandle()).getDuration();
-		}
-		else {*/
-			throw new UnsupportedOperationException("getFireTicks called on non-flammable entity");
-		//}
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -147,12 +143,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 
 	@Override
 	public void setFireTicks(int ticks) {
-		/*if (getHandle() instanceof Flammable){
-			((Flammable)getHandle()).setDuration(ticks);
-		}
-		else {*/
-			throw new UnsupportedOperationException("setFireTicks called on non-flammable entity");
-		//}
+		throw new NotImplementedException();
 	}
 
 	@Override
@@ -177,22 +168,34 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 
 	@Override
 	public Entity getPassenger() {
-		throw new NotImplementedException();
+		return PoreEntity.of(getHandle().getRider().get());
 	}
 
 	@Override
 	public boolean setPassenger(Entity passenger) {
-		throw new NotImplementedException();
+		if (getHandle().getRider() == null) {
+			((PoreEntity) passenger).getHandle().mount(getHandle());
+			return true;
+		}
+		else if (passenger == null){
+			getHandle().eject();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		throw new NotImplementedException();
+		return getHandle().getRider() == null;
 	}
 
 	@Override
 	public boolean eject() {
-		throw new NotImplementedException();
+		if (getHandle().getRider() != null) {
+			getHandle().eject();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -207,18 +210,17 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 
 	@Override
 	public void setLastDamageCause(EntityDamageEvent event) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // Sponge implementation planned for 1.1
 	}
 
 	@Override
 	public EntityDamageEvent getLastDamageCause() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); // Sponge implementation planned for 1.1
 	}
 
 	@Override
 	public UUID getUniqueId() {
-		//return ((Identifiable)getHandle()).getUniqueId(); //TODO: is this the right way to do this?
-		throw new NotImplementedException();
+		return ((Identifiable)getHandle()).getUniqueId();
 	}
 
 	@Override
@@ -243,17 +245,21 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 
 	@Override
 	public boolean isInsideVehicle() {
-		throw new NotImplementedException();
+		return getHandle().getRiding() != null;
 	}
 
 	@Override
 	public boolean leaveVehicle() {
-		throw new NotImplementedException();
+		if (getHandle().getRiding() != null) {
+			getHandle().dismount();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Entity getVehicle() {
-		throw new NotImplementedException();
+		return PoreEntity.of(getHandle().getRiding().get());
 	}
 
 	@Override

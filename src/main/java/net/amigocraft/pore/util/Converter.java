@@ -28,6 +28,7 @@ import java.util.Map;
  * @param <B> The class of the Sponge class's corresponding wrapper in Pore.
  */
 public abstract class Converter<S, B> implements Function<S, B> {
+
 	private final Map<S, B> instances = new MapMaker().concurrencyLevel(1).weakKeys().weakValues().makeMap();
 
 	/**
@@ -47,6 +48,7 @@ public abstract class Converter<S, B> implements Function<S, B> {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	protected B applyUnchecked(Object handle) {
 		return apply((S) handle);
 	}

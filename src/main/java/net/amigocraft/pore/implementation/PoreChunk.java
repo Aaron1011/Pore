@@ -90,31 +90,31 @@ public class PoreChunk extends PoreWrapper<org.spongepowered.api.world.Chunk> im
 
 	@Override
 	public boolean isLoaded() {
-		throw new NotImplementedException();
+		return load(true);
 	}
 
 	@Override
 	public boolean load(boolean generate) {
-		throw new NotImplementedException();
+		return getHandle().loadChunk(generate);
 	}
 
 	@Override
 	public boolean load() {
-		throw new NotImplementedException();
+		return load(true);
 	}
 
 	@Override
 	public boolean unload(boolean save, boolean safe) {
-		throw new NotImplementedException();
+		return getHandle().unloadChunk(); //TODO: parameters
 	}
 
 	@Override
 	public boolean unload(boolean save) {
-		throw new NotImplementedException();
+		return unload(save, false);
 	}
 
 	@Override
 	public boolean unload() {
-		throw new NotImplementedException();
+		return unload(true);
 	}
 }

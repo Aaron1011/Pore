@@ -168,22 +168,22 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 
 	@Override
 	public boolean unloadChunk(Chunk chunk) {
-		throw new NotImplementedException();
+		return chunk.unload();
 	}
 
 	@Override
 	public boolean unloadChunk(int x, int z) {
-		throw new NotImplementedException();
+		return unloadChunk(x, z, true);
 	}
 
 	@Override
 	public boolean unloadChunk(int x, int z, boolean save) {
-		throw new NotImplementedException();
+		return unloadChunk(x, z, save, false);
 	}
 
 	@Override
 	public boolean unloadChunk(int x, int z, boolean save, boolean safe) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).unload(save, safe);
 	}
 
 	@Override
