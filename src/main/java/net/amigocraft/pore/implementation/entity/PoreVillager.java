@@ -1,21 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Villager;
+import org.spongepowered.api.entity.living.villager.Villager;
 
-public class PoreVillager extends PoreAgeable implements Villager {
+public class PoreVillager extends PoreAgeable implements org.bukkit.entity.Villager {
 
-	// TODO: Bridge
+	private static TypeConverter<Villager, PoreVillager> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreVillager(org.spongepowered.api.entity.living.Living handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Villager, PoreVillager> getVillagerConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<Villager, PoreVillager>(){
+				@Override
+				protected PoreVillager convert(Villager handle) {
+					return new PoreVillager(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreVillager(Villager handle) {
 		super(handle);
 	}
 
-	public static PoreVillager of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Villager getHandle() {
+		return (Villager)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreVillager of(Villager handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public EntityType getType(){

@@ -1,21 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Pig;
+import org.spongepowered.api.entity.living.animal.Pig;
 
-public class PorePig extends PoreAnimals implements Pig {
+public class PorePig extends PoreAnimals implements org.bukkit.entity.Pig {
 
-	// TODO: Bridge
+	private static TypeConverter<Pig, PorePig> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PorePig(org.spongepowered.api.entity.living.Living handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Pig, PorePig> getPigConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<Pig, PorePig>(){
+				@Override
+				protected PorePig convert(Pig handle) {
+					return new PorePig(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PorePig(Pig handle) {
 		super(handle);
 	}
 
-	public static PorePig of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Pig getHandle() {
+		return (Pig)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PorePig of(Pig handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public EntityType getType(){

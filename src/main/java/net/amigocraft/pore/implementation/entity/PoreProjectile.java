@@ -1,21 +1,66 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
+import org.bukkit.entity.*;
 import org.bukkit.projectiles.ProjectileSource;
+import org.spongepowered.api.entity.projectile.*;
+import org.spongepowered.api.entity.projectile.Arrow;
+import org.spongepowered.api.entity.projectile.Egg;
+import org.spongepowered.api.entity.projectile.EnderPearl;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.Snowball;
+import org.spongepowered.api.entity.projectile.ThrownExpBottle;
+import org.spongepowered.api.entity.projectile.ThrownPotion;
 
-public class PoreProjectile extends PoreAbstractProjectile implements Projectile {
+public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Projectile {
 
-	//TODO: Bridge
+	private static TypeConverter<Projectile, PoreProjectile> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreProjectile(org.spongepowered.api.entity.Entity handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Projectile, PoreProjectile> getProjectileConverter() {
+		if (converter == null) {
+			converter = new ParentTypeConverter<Projectile, PoreProjectile>(
+					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+							.put(Arrow.class, PoreArrow.getArrowConverter())
+							.put(Egg.class, PoreEgg.getEggConverter())
+							.put(EnderPearl.class, PoreEnderPearl.getEnderPearlConverter())
+							.put(Snowball.class, PoreSnowball.getSnowballConverter())
+							.put(ThrownExpBottle.class, PoreThrownExpBottle.getThrownExpBottleConverter())
+							.put(ThrownPotion.class, PoreThrownPotion.getThrownPotionConverter())
+							.build()
+			){
+				@Override
+				protected PoreProjectile convert(Projectile handle) {
+					return new PoreProjectile(handle);
+				}
+			};
+		}
+
+		return converter;
+	}
+
+	//TODO: bridge
+
+	protected PoreProjectile(Projectile handle) {
 		super(handle);
 	}
 
-	public static PoreProjectile of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Projectile getHandle() {
+		return (Projectile)super.getHandle();
+	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreProjectile of(Projectile handle) {
+		return converter.apply(handle);
 	}
 
 	@Override

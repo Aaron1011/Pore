@@ -13,7 +13,7 @@
  * THE SOFTWARE.
  */
 
-package net.amigocraft.pore.util;
+package net.amigocraft.pore.util.converter;
 
 import com.google.common.base.Function;
 import com.google.common.collect.MapMaker;
@@ -27,7 +27,7 @@ import java.util.Map;
  * @param <S> The class of the Sponge object to be wrapped.
  * @param <B> The class of the Sponge class's corresponding wrapper in Pore.
  */
-public abstract class Converter<S, B> implements Function<S, B> {
+public abstract class TypeConverter<S, B> implements Function<S, B> {
 
 	private final Map<S, B> instances = new MapMaker().concurrencyLevel(1).weakKeys().weakValues().makeMap();
 

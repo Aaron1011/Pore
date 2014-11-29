@@ -13,9 +13,10 @@
  * THE SOFTWARE.
  */
 
-package net.amigocraft.pore.util;
+package net.amigocraft.pore.util.converter;
 
 import net.amigocraft.pore.Pore;
+import net.amigocraft.pore.util.CsvMap;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Material;
 import org.spongepowered.api.block.BlockType;

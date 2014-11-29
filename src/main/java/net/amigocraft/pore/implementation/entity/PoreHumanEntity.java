@@ -1,7 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
-import net.amigocraft.pore.util.Converter;
-import net.amigocraft.pore.util.ParentConverter;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -20,11 +20,12 @@ import org.spongepowered.api.entity.player.Player;
 import java.util.Set;
 
 public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
-	private static Converter<Human, PoreHumanEntity> converter;
 
-	static Converter<Human, PoreHumanEntity> getHumanEntityConverter() {
+	private static TypeConverter<Human, PoreHumanEntity> converter;
+
+	static TypeConverter<Human, PoreHumanEntity> getHumanEntityConverter() {
 		if (converter == null) {
-			converter = new ParentConverter<Human, PoreHumanEntity>(
+			converter = new ParentTypeConverter<Human, PoreHumanEntity>(
 					Player.class, PorePlayer.getPlayerConverter()
 			) {
 				@Override
@@ -37,20 +38,26 @@ public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
 		return converter;
 	}
 
-	//TODO: bridge
-
 	protected PoreHumanEntity(Human handle) {
 		super(handle);
 	}
 
 	@Override
 	public Human getHandle() {
-		return (Human) super.getHandle();
+		return (Human)super.getHandle();
 	}
 
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
 	public static PoreHumanEntity of(Human handle) {
 		return getHumanEntityConverter().apply(handle);
 	}
+
+	//TODO: bridge
 
 	@Override
 	public String getName() {

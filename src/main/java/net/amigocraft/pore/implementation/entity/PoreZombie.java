@@ -1,21 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Zombie;
+import org.spongepowered.api.entity.living.monster.Zombie;
 
-public class PoreZombie extends PoreMonster implements Zombie {
+public class PoreZombie extends PoreMonster implements org.bukkit.entity.Zombie {
 
-	// TODO: Bridge
+	private static TypeConverter<Zombie, PoreZombie> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreZombie(org.spongepowered.api.entity.living.Living handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Zombie, PoreZombie> getZombieConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<Zombie, PoreZombie>(){
+				@Override
+				protected PoreZombie convert(Zombie handle) {
+					return new PoreZombie(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreZombie(Zombie handle) {
 		super(handle);
 	}
 
-	public static PoreZombie of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Zombie getHandle() {
+		return (Zombie)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreZombie of(Zombie handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public EntityType getType(){

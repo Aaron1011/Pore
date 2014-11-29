@@ -1,21 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.Hanging;
+import org.spongepowered.api.entity.hanging.Hanging;
 
-public class PoreHanging extends PoreEntity implements Hanging {
+public class PoreHanging extends PoreEntity implements org.bukkit.entity.Hanging {
 
-	// TODO: Bridge
+	private static TypeConverter<Hanging, PoreHanging> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreHanging(org.spongepowered.api.entity.Entity handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Hanging, PoreHanging> getHangingConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<Hanging, PoreHanging>(){
+				@Override
+				protected PoreHanging convert(Hanging handle) {
+					return new PoreHanging(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreHanging(Hanging handle) {
 		super(handle);
 	}
 
-	public static PoreHanging of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Hanging getHandle() {
+		return (Hanging)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreHanging of(Hanging handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public boolean setFacingDirection(BlockFace face, boolean force) {

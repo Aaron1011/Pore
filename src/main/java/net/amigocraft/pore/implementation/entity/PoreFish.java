@@ -1,22 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fish;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
+import org.spongepowered.api.entity.projectile.FishHook;
 
-public class PoreFish extends PoreAbstractProjectile implements Fish {
+public class PoreFish extends PoreProjectile implements Fish {
 
-	// TODO: Bridge
+	private static TypeConverter<FishHook, PoreFish> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreFish(org.spongepowered.api.entity.Entity handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<FishHook, PoreFish> getFishConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<FishHook, PoreFish>(){
+				@Override
+				protected PoreFish convert(FishHook handle) {
+					return new PoreFish(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreFish(FishHook handle) {
 		super(handle);
 	}
 
-	public static PoreFish of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public FishHook getHandle() {
+		return (FishHook)super.getHandle();
+	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreFish of(FishHook handle) {
+		return converter.apply(handle);
 	}
 
 	@Override

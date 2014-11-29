@@ -1,15 +1,15 @@
 package net.amigocraft.pore.implementation.entity;
 
-import net.amigocraft.pore.util.Converter;
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.*;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
+import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.Identifiable;
 
 import java.net.InetSocketAddress;
@@ -19,14 +19,15 @@ import java.util.UUID;
 
 //TODO: bridge
 
-public class PorePlayer extends PoreHumanEntity implements Player {
-	private static Converter<org.spongepowered.api.entity.player.Player, PorePlayer> converter;
+public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Player {
 
-	public static Converter<org.spongepowered.api.entity.player.Player, PorePlayer> getPlayerConverter() {
+	private static TypeConverter<Player, PorePlayer> converter;
+
+	public static TypeConverter<Player, PorePlayer> getPlayerConverter() {
 		if (converter == null) {
-			converter = new Converter<org.spongepowered.api.entity.player.Player, PorePlayer>() {
+			converter = new TypeConverter<Player, PorePlayer>() {
 				@Override
-				protected PorePlayer convert(org.spongepowered.api.entity.player.Player handle) {
+				protected PorePlayer convert(Player handle) {
 					return new PorePlayer(handle);
 				}
 			};
@@ -35,17 +36,17 @@ public class PorePlayer extends PoreHumanEntity implements Player {
 		return converter;
 	}
 
-	protected PorePlayer(org.spongepowered.api.entity.player.Player handle){
+	protected PorePlayer(Player handle){
 		super(handle);
 	}
 
 	@Override
-	public org.spongepowered.api.entity.player.Player getHandle() {
-		return (org.spongepowered.api.entity.player.Player) super.getHandle();
+	public Player getHandle() {
+		return (Player) super.getHandle();
 	}
 
-	public static PorePlayer of(org.spongepowered.api.entity.player.Player handle) {
-		return getPlayerConverter().apply(handle);
+	public static PorePlayer of(Player handle) {
+		return converter.apply(handle);
 	}
 
 	@Override
@@ -474,7 +475,7 @@ public class PorePlayer extends PoreHumanEntity implements Player {
 	}
 
 	@Override
-	public Player getPlayer() {
+	public org.bukkit.entity.Player getPlayer() {
 		throw new NotImplementedException();
 	}
 
@@ -519,17 +520,17 @@ public class PorePlayer extends PoreHumanEntity implements Player {
 	}
 
 	@Override
-	public void hidePlayer(Player player) {
+	public void hidePlayer(org.bukkit.entity.Player player) {
 		throw new NotImplementedException();
 	}
 
 	@Override
-	public void showPlayer(Player player) {
+	public void showPlayer(org.bukkit.entity.Player player) {
 		throw new NotImplementedException();
 	}
 
 	@Override
-	public boolean canSee(Player player) {
+	public boolean canSee(org.bukkit.entity.Player player) {
 		throw new NotImplementedException();
 	}
 

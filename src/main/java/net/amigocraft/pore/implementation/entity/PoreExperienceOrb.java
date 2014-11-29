@@ -6,9 +6,8 @@ import org.bukkit.entity.ExperienceOrb;
 
 public class PoreExperienceOrb extends PoreEntity implements ExperienceOrb {
 
-	//TODO: Bridge
+	//TODO: implement after updating SpongeAPI
 
-	//TODO: make constructor as specific as possible
 	protected PoreExperienceOrb(org.spongepowered.api.entity.Entity handle){
 		super(handle);
 	}

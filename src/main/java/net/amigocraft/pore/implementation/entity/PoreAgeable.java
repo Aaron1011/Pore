@@ -1,19 +1,52 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
+import org.spongepowered.api.entity.living.animal.Animal;
 
 public class PoreAgeable extends PoreCreature implements Ageable {
 
-	//TODO: Bridge
+	private static TypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreAgeable(org.spongepowered.api.entity.living.Living handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable> getAgeableConverter() {
+		if (converter == null) {
+			converter = new ParentTypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable>(
+					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+							.put(Animal.class, PoreAnimals.getAnimalConverter())
+							.build()
+			){
+				@Override
+				protected PoreAgeable convert(org.spongepowered.api.entity.living.Ageable handle) {
+					return new PoreAgeable(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	//TODO: bridge
+
+	protected PoreAgeable(org.spongepowered.api.entity.living.Ageable handle) {
 		super(handle);
 	}
 
-	public static PoreAgeable of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public org.spongepowered.api.entity.living.Ageable getHandle() {
+		return (org.spongepowered.api.entity.living.Ageable)super.getHandle();
+	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreAgeable of(org.spongepowered.api.entity.living.Ageable handle) {
+		return converter.apply(handle);
 	}
 
 	@Override

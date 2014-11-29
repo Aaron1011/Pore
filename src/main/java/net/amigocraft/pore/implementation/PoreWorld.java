@@ -9,7 +9,7 @@ import net.amigocraft.pore.implementation.block.PoreBlock;
 import net.amigocraft.pore.implementation.entity.PoreEntity;
 import net.amigocraft.pore.implementation.entity.PoreLivingEntity;
 import net.amigocraft.pore.implementation.entity.PorePlayer;
-import net.amigocraft.pore.util.Converter;
+import net.amigocraft.pore.util.converter.TypeConverter;
 import net.amigocraft.pore.util.PoreCollections;
 import net.amigocraft.pore.util.PoreWrapper;
 import org.apache.commons.lang.NotImplementedException;
@@ -37,11 +37,11 @@ import java.util.Set;
 import java.util.UUID;
 
 public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> implements World {
-	private static Converter<org.spongepowered.api.world.World, PoreWorld> converter;
+	private static TypeConverter<org.spongepowered.api.world.World, PoreWorld> converter;
 
-	static Converter<org.spongepowered.api.world.World, PoreWorld> getConverter() {
+	static TypeConverter<org.spongepowered.api.world.World, PoreWorld> getConverter() {
 		if (converter == null) {
-			converter = new Converter<org.spongepowered.api.world.World, PoreWorld>() {
+			converter = new TypeConverter<org.spongepowered.api.world.World, PoreWorld>() {
 				@Override
 				protected PoreWorld convert(org.spongepowered.api.world.World handle) {
 					return new PoreWorld(handle);

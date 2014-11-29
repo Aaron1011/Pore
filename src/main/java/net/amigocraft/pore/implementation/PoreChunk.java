@@ -3,7 +3,7 @@ package net.amigocraft.pore.implementation;
 import com.google.common.collect.Collections2;
 import net.amigocraft.pore.implementation.block.PoreBlock;
 import net.amigocraft.pore.implementation.entity.PoreEntity;
-import net.amigocraft.pore.util.Converter;
+import net.amigocraft.pore.util.converter.TypeConverter;
 import net.amigocraft.pore.util.PoreWrapper;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Chunk;
@@ -18,11 +18,11 @@ import java.util.Collection;
 //TODO: skeleton implementation
 
 public class PoreChunk extends PoreWrapper<org.spongepowered.api.world.Chunk> implements Chunk {
-	private static Converter<org.spongepowered.api.world.Chunk, PoreChunk> converter;
+	private static TypeConverter<org.spongepowered.api.world.Chunk, PoreChunk> converter;
 
-	static Converter<org.spongepowered.api.world.Chunk, PoreChunk> getConverter() {
+	static TypeConverter<org.spongepowered.api.world.Chunk, PoreChunk> getConverter() {
 		if (converter == null) {
-			converter = new Converter<org.spongepowered.api.world.Chunk, PoreChunk>() {
+			converter = new TypeConverter<org.spongepowered.api.world.Chunk, PoreChunk>() {
 				@Override
 				protected PoreChunk convert(org.spongepowered.api.world.Chunk handle) {
 					return new PoreChunk(handle);

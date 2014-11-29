@@ -1,22 +1,48 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Wolf;
+import org.spongepowered.api.entity.living.animal.Wolf;
 
-public class PoreWolf extends PoreTameableAnimal implements Wolf {
+public class PoreWolf extends PoreTameable implements org.bukkit.entity.Wolf {
 
-	// TODO: Bridge
+	private static TypeConverter<Wolf, PoreWolf> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreWolf(org.spongepowered.api.entity.living.Living handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Wolf, PoreWolf> getWolfConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<Wolf, PoreWolf>(){
+				@Override
+				protected PoreWolf convert(Wolf handle) {
+					return new PoreWolf(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreWolf(Wolf handle) {
 		super(handle);
 	}
 
-	public static PoreWolf of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Wolf getHandle() {
+		return (Wolf)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreWolf of(Wolf handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public EntityType getType(){

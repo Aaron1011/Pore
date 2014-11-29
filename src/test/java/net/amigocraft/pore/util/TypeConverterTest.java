@@ -12,7 +12,7 @@ import org.spongepowered.api.entity.player.Player;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
-public class ConverterTest {
+public class TypeConverterTest {
 
 	@Before
 	public void initConverters() {

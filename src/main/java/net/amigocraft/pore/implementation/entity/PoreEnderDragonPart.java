@@ -1,20 +1,45 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EnderDragonPart;
 import org.bukkit.entity.Entity;
 
 public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderDragonPart {
 
-	//TODO: Bridge
+	private static TypeConverter<org.spongepowered.api.entity.living.complex.EnderDragonPart, PoreEnderDragonPart> converter;
 
-	//TODO: make constructor as specific as possible
-	protected PoreEnderDragonPart(org.spongepowered.api.entity.Entity handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<org.spongepowered.api.entity.living.complex.EnderDragonPart, PoreEnderDragonPart>
+	getEnderDragonPartConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<org.spongepowered.api.entity.living.complex.EnderDragonPart, PoreEnderDragonPart>(){
+				@Override
+				protected PoreEnderDragonPart convert(org.spongepowered.api.entity.living.complex.EnderDragonPart handle) {
+					return new PoreEnderDragonPart(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreEnderDragonPart(org.spongepowered.api.entity.living.complex.EnderDragonPart handle) {
 		super(handle);
 	}
 
-	public static PoreEnderDragonPart of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public org.spongepowered.api.entity.living.complex.EnderDragonPart getHandle() {
+		return (org.spongepowered.api.entity.living.complex.EnderDragonPart)super.getHandle();
+	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreEnderDragonPart of(org.spongepowered.api.entity.living.complex.EnderDragonPart handle) {
+		return converter.apply(handle);
 	}
 
 	@Override
@@ -44,7 +69,7 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public int _INVALID_getHealth() {
-		throw new NotImplementedException();
+		return (int)getHealth();
 	}
 
 	@Override
@@ -54,7 +79,7 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public void _INVALID_setHealth(int health) {
-		throw new NotImplementedException();
+		this.setHealth(health);
 	}
 
 	@Override
@@ -64,7 +89,7 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public int _INVALID_getMaxHealth() {
-		throw new NotImplementedException();
+		return (int)this.getMaxHealth();
 	}
 
 	@Override
@@ -74,7 +99,7 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public void _INVALID_setMaxHealth(int health) {
-		throw new NotImplementedException();
+		this.setMaxHealth(health);
 	}
 
 	@Override

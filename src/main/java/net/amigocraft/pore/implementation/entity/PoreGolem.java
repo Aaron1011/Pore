@@ -1,17 +1,49 @@
 package net.amigocraft.pore.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Golem;
+import com.google.common.collect.ImmutableMap;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
+import org.spongepowered.api.entity.living.golem.Golem;
+import org.spongepowered.api.entity.living.golem.IronGolem;
 
-public class PoreGolem extends PoreCreature implements Golem {
+public class PoreGolem extends PoreCreature implements org.bukkit.entity.Golem {
 
-	//TODO: make constructor as specific as possible
-	protected PoreGolem(org.spongepowered.api.entity.living.Living handle){
+	private static TypeConverter<Golem, PoreGolem> converter;
+
+	@SuppressWarnings("unchecked")
+	static TypeConverter<Golem, PoreGolem> getGolemConverter() {
+		if (converter == null) {
+			converter = new ParentTypeConverter<Golem, PoreGolem>(
+					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+							.put(IronGolem.class, PoreIronGolem.getIronGolemConverter())
+							.build()
+			){
+				@Override
+				protected PoreGolem convert(Golem handle) {
+					return new PoreGolem(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreGolem(Golem handle) {
 		super(handle);
 	}
 
-	public static PoreGolem of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public Golem getHandle() {
+		return (Golem)super.getHandle();
+	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreGolem of(Golem handle) {
+		return converter.apply(handle);
 	}
 
 }

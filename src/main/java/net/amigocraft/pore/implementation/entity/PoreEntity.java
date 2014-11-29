@@ -1,7 +1,11 @@
 package net.amigocraft.pore.implementation.entity;
 
-import net.amigocraft.pore.Pore;
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.*;
+import net.amigocraft.pore.util.converter.vector.LocationFactory;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.vector.Vector3dFactory;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
@@ -12,18 +16,25 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
 import java.util.UUID;
 
-public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity> implements Entity { //TODO: determine if metadata methods should be implemented manually
-	private static Converter<org.spongepowered.api.entity.Entity, PoreEntity> converter;
+//TODO: determine if metadata methods should be implemented manually
+public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity> implements Entity {
 
-	public static Converter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
+	private static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> converter;
+
+	@SuppressWarnings("unchecked")
+	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
 		if (converter == null) {
-			converter = new ParentConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
-					Living.class, PoreLivingEntity.getLivingEntityConverter()
+			converter = new ParentTypeConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
+					(ImmutableMap)ImmutableMap.builder()
+					.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
+					.put(Projectile.class, PoreProjectile.getProjectileConverter())
+					.build()
 			) {
 				@Override
 				protected PoreEntity convert(org.spongepowered.api.entity.Entity handle) {
@@ -39,6 +50,11 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 		super(handle);
 	}
 
+	@Override
+	public org.spongepowered.api.entity.Entity getHandle() {
+		return super.getHandle();
+	}
+
 	/**
 	 * Returns a Pore wrapper for the given handle.
 	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
@@ -47,6 +63,11 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	 */
 	public static PoreEntity of(org.spongepowered.api.entity.Entity handle) {
 		return getConverter().apply(handle);
+	}
+
+	@Override
+	public EntityType getType(){
+		return EntityType.UNKNOWN;
 	}
 
 	@Override
@@ -236,11 +257,6 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	@Override
 	public void playEffect(EntityEffect type) {
 		throw new NotImplementedException();
-	}
-
-	@Override
-	public EntityType getType() {
-		return EntityType.UNKNOWN; // this will almost always be overridden
 	}
 
 	@Override

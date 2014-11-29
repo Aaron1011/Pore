@@ -1,7 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
-import net.amigocraft.pore.util.Converter;
-import net.amigocraft.pore.util.ParentConverter;
+import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -18,11 +18,11 @@ import java.util.HashSet;
 import java.util.List;
 
 public class PoreLivingEntity extends PoreEntity implements LivingEntity {
-	private static Converter<org.spongepowered.api.entity.living.Living, PoreLivingEntity> converter;
+	private static TypeConverter<Living, PoreLivingEntity> converter;
 
-	static Converter<Living, PoreLivingEntity> getLivingEntityConverter() {
+	static TypeConverter<Living, PoreLivingEntity> getLivingEntityConverter() {
 		if (converter == null) {
-			converter = new ParentConverter<Living, PoreLivingEntity>(
+			converter = new ParentTypeConverter<Living, PoreLivingEntity>(
 					Human.class, PoreHumanEntity.getHumanEntityConverter()
 			) {
 				@Override
@@ -40,13 +40,15 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 	}
 
 	@Override
-	public org.spongepowered.api.entity.living.Living getHandle() {
-		return (org.spongepowered.api.entity.living.Living) super.getHandle();
+	public Living getHandle() {
+		return (Living) super.getHandle();
 	}
 
-	public static PoreLivingEntity of(org.spongepowered.api.entity.living.Living handle) {
+	public static PoreLivingEntity of(Living handle) {
 		return getLivingEntityConverter().apply(handle);
 	}
+
+	//TODO: bridge
 
 	@Override
 	public double getEyeHeight() {
@@ -318,7 +320,6 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 		throw new NotImplementedException();
 	}
 
-	// Overrided from ProjectileSource
 	@Override
 	public <T extends Projectile> T launchProjectile(Class<? extends T> projectile) {
 		throw new NotImplementedException();
