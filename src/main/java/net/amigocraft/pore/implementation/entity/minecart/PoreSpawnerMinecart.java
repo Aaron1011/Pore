@@ -7,7 +7,7 @@ import org.bukkit.entity.minecart.SpawnerMinecart;
 public class PoreSpawnerMinecart extends PoreMinecart implements SpawnerMinecart {
 
 	//TODO: make constructor as specific as possible
-	protected PoreSpawnerMinecart(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSpawnerMinecart(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

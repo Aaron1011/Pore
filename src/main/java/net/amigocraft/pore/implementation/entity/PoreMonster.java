@@ -6,7 +6,7 @@ import org.bukkit.entity.Monster;
 public class PoreMonster extends PoreCreature implements Monster {
 
 	//TODO: make constructor as specific as possible
-	protected PoreMonster(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreMonster(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

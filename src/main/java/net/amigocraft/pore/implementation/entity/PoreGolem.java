@@ -6,7 +6,7 @@ import org.bukkit.entity.Golem;
 public class PoreGolem extends PoreCreature implements Golem {
 
 	//TODO: make constructor as specific as possible
-	protected PoreGolem(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreGolem(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

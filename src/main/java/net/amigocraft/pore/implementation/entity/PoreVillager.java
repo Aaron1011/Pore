@@ -9,7 +9,7 @@ public class PoreVillager extends PoreAgeable implements Villager {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreVillager(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreVillager(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

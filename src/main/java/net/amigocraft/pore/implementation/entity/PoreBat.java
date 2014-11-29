@@ -9,7 +9,7 @@ public class PoreBat extends PoreAmbient implements Bat {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreBat(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreBat(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -7,7 +7,7 @@ import org.bukkit.entity.Silverfish;
 public class PoreSilverfish extends PoreMonster implements Silverfish {
 
 	//TODO: make constructor as specific as possible
-	protected PoreSilverfish(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSilverfish(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

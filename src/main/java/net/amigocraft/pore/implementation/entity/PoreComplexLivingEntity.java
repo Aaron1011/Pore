@@ -6,7 +6,7 @@ import org.bukkit.entity.ComplexLivingEntity;
 public abstract class PoreComplexLivingEntity extends PoreLivingEntity implements ComplexLivingEntity {
 
 	//TODO: make constructor as specific as possible
-	protected PoreComplexLivingEntity(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreComplexLivingEntity(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -7,7 +7,7 @@ import org.bukkit.entity.minecart.ExplosiveMinecart;
 public class PoreExplosiveMinecart extends PoreMinecart implements ExplosiveMinecart {
 
 	//TODO: make constructor as specific as possible
-	protected PoreExplosiveMinecart(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreExplosiveMinecart(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

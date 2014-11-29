@@ -10,7 +10,7 @@ public class PoreHopperMinecart extends PoreMinecart implements HopperMinecart {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreHopperMinecart(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreHopperMinecart(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

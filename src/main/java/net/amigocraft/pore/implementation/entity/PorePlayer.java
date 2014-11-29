@@ -20,13 +20,13 @@ import java.util.UUID;
 //TODO: bridge
 
 public class PorePlayer extends PoreHumanEntity implements Player {
-	private static Converter<org.spongepowered.api.entity.Player, PorePlayer> converter;
+	private static Converter<org.spongepowered.api.entity.player.Player, PorePlayer> converter;
 
-	public static Converter<org.spongepowered.api.entity.Player, PorePlayer> getPlayerConverter() {
+	public static Converter<org.spongepowered.api.entity.player.Player, PorePlayer> getPlayerConverter() {
 		if (converter == null) {
-			converter = new Converter<org.spongepowered.api.entity.Player, PorePlayer>() {
+			converter = new Converter<org.spongepowered.api.entity.player.Player, PorePlayer>() {
 				@Override
-				protected PorePlayer convert(org.spongepowered.api.entity.Player handle) {
+				protected PorePlayer convert(org.spongepowered.api.entity.player.Player handle) {
 					return new PorePlayer(handle);
 				}
 			};
@@ -35,16 +35,16 @@ public class PorePlayer extends PoreHumanEntity implements Player {
 		return converter;
 	}
 
-	protected PorePlayer(org.spongepowered.api.entity.Player handle){
+	protected PorePlayer(org.spongepowered.api.entity.player.Player handle){
 		super(handle);
 	}
 
 	@Override
-	public org.spongepowered.api.entity.Player getHandle() {
-		return (org.spongepowered.api.entity.Player) super.getHandle();
+	public org.spongepowered.api.entity.player.Player getHandle() {
+		return (org.spongepowered.api.entity.player.Player) super.getHandle();
 	}
 
-	public static PorePlayer of(org.spongepowered.api.entity.Player handle) {
+	public static PorePlayer of(org.spongepowered.api.entity.player.Player handle) {
 		return getPlayerConverter().apply(handle);
 	}
 

@@ -7,7 +7,7 @@ import org.bukkit.entity.EntityType;
 public class PoreCow extends PoreAnimals implements Cow {
 
 	//TODO: make constructor as specific as possible
-	protected PoreCow(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreCow(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

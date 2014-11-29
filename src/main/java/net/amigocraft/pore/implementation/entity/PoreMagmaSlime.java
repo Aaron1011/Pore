@@ -7,7 +7,7 @@ import org.bukkit.entity.MagmaCube;
 public class PoreMagmaSlime extends PoreSlime implements MagmaCube {
 
 	//TODO: make constructor as specific as possible
-	protected PoreMagmaSlime(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreMagmaSlime(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

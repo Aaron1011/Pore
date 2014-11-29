@@ -7,7 +7,7 @@ import org.bukkit.entity.Witch;
 public class PoreWitch extends PoreMonster implements Witch {
 
 	//TODO: make constructor as specific as possible
-	protected PoreWitch(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreWitch(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

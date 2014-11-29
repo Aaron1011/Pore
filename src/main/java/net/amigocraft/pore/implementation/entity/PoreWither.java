@@ -7,7 +7,7 @@ import org.bukkit.entity.Wither;
 public class PoreWither extends PoreMonster implements Wither {
 
 	//TODO: make constructor as specific as possible
-	protected PoreWither(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreWither(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

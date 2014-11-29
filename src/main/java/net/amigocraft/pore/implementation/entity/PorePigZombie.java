@@ -9,7 +9,7 @@ public class PorePigZombie extends PoreZombie implements PigZombie {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PorePigZombie(org.spongepowered.api.entity.LivingEntity handle){
+	protected PorePigZombie(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

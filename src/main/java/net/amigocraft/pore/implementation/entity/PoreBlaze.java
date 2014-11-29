@@ -7,7 +7,7 @@ import org.bukkit.entity.EntityType;
 public class PoreBlaze extends PoreMonster implements Blaze {
 
 	//TODO: make constructor as specific as possible
-	protected PoreBlaze(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreBlaze(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

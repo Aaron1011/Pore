@@ -10,7 +10,7 @@ public class PoreSheep extends PoreAnimals implements Sheep {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreSheep(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSheep(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

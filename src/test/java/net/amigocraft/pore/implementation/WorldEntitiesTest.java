@@ -31,18 +31,18 @@ public class WorldEntitiesTest {
 		// Initialize world
 		world = PoreWorld.of(mock(World.class));
 		when(world.getHandle().getEntities()).thenReturn(ImmutableList.of(
-				mock(org.spongepowered.api.entity.Player.class),
+				mock(org.spongepowered.api.entity.player.Player.class),
 				mock(org.spongepowered.api.entity.Entity.class),
-				mock(org.spongepowered.api.entity.HumanEntity.class),
-				mock(org.spongepowered.api.entity.Player.class),
-				mock(org.spongepowered.api.entity.LivingEntity.class),
-				mock(org.spongepowered.api.entity.Player.class),
-				mock(org.spongepowered.api.entity.Player.class),
-				mock(org.spongepowered.api.entity.LivingEntity.class),
-				mock(org.spongepowered.api.entity.LivingEntity.class),
+				mock(org.spongepowered.api.entity.living.Human.class),
+				mock(org.spongepowered.api.entity.player.Player.class),
+				mock(org.spongepowered.api.entity.living.Living.class),
+				mock(org.spongepowered.api.entity.player.Player.class),
+				mock(org.spongepowered.api.entity.player.Player.class),
+				mock(org.spongepowered.api.entity.living.Living.class),
+				mock(org.spongepowered.api.entity.living.Living.class),
 				mock(org.spongepowered.api.entity.Entity.class),
-				mock(org.spongepowered.api.entity.HumanEntity.class),
-				mock(org.spongepowered.api.entity.Player.class)
+				mock(org.spongepowered.api.entity.living.Human.class),
+				mock(org.spongepowered.api.entity.player.Player.class)
 		));
 	}
 

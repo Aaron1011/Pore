@@ -8,7 +8,7 @@ public class PoreAgeable extends PoreCreature implements Ageable {
 	//TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreAgeable(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreAgeable(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

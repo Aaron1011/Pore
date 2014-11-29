@@ -7,7 +7,7 @@ import org.bukkit.entity.MushroomCow;
 public class PoreMushroomCow extends PoreCow implements MushroomCow {
 
 	//TODO: make constructor as specific as possible
-	protected PoreMushroomCow(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreMushroomCow(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

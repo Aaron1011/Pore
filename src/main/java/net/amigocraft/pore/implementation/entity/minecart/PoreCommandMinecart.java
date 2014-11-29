@@ -15,7 +15,7 @@ public class PoreCommandMinecart extends PoreMinecart implements CommandMinecart
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreCommandMinecart(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreCommandMinecart(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

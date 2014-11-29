@@ -7,7 +7,7 @@ import org.bukkit.entity.Squid;
 public class PoreSquid extends PoreWaterMob implements Squid {
 
 	//TODO: make constructor as specific as possible
-	protected PoreSquid(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSquid(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -7,7 +7,7 @@ import org.bukkit.entity.Ghast;
 public class PoreGhast extends PoreFlying implements Ghast {
 
 	//TODO: make constructor as specific as possible
-	protected PoreGhast(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreGhast(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

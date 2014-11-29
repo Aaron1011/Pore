@@ -6,7 +6,7 @@ import org.bukkit.entity.WaterMob;
 public class PoreWaterMob extends PoreCreature implements WaterMob {
 
 	//TODO: make constructor as specific as possible
-	protected PoreWaterMob(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreWaterMob(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

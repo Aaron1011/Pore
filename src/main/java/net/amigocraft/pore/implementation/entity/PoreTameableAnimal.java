@@ -10,7 +10,7 @@ public class PoreTameableAnimal extends PoreAnimals implements Tameable, Creatur
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreTameableAnimal(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreTameableAnimal(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

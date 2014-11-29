@@ -9,7 +9,7 @@ public class PoreCreeper extends PoreMonster implements Creeper {
 	//TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreCreeper(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreCreeper(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

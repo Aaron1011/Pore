@@ -7,7 +7,7 @@ import org.bukkit.entity.EntityType;
 public class PoreEnderPearl extends PoreProjectile implements EnderPearl {
 
 	//TODO: make constructor as specific as possible
-	protected PoreEnderPearl(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreEnderPearl(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

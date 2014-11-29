@@ -10,11 +10,11 @@ public class PoreEnderman extends PoreMonster implements Enderman {
 	//TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreEnderman(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreEnderman(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 
-	public static PoreEnderman of(org.spongepowered.api.entity.LivingEntity handle){
+	public static PoreEnderman of(org.spongepowered.api.entity.living.Living handle){
 		throw new NotImplementedException();
 	}
 

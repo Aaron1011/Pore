@@ -11,7 +11,7 @@ public class PoreHorse extends PoreAnimals implements Horse {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreHorse(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreHorse(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

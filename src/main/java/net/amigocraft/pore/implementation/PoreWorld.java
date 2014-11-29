@@ -267,8 +267,8 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 		// This is basically copying every time, unfortunately there is no real better way because we can't filter Lists using Guava
 		List<LivingEntity> living = Lists.newArrayList();
 		for (org.spongepowered.api.entity.Entity e : getHandle().getEntities()) {
-			if (e instanceof org.spongepowered.api.entity.LivingEntity) {
-				living.add(PoreLivingEntity.of((org.spongepowered.api.entity.LivingEntity) e));
+			if (e instanceof org.spongepowered.api.entity.living.Living) {
+				living.add(PoreLivingEntity.of((org.spongepowered.api.entity.living.Living) e));
 			}
 		}
 		return living;
@@ -309,8 +309,8 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 		// see getLivingEntities() for explanation
 		List<Player> players = Lists.newArrayList();
 		for (org.spongepowered.api.entity.Entity e : getHandle().getEntities()){
-			if (e instanceof org.spongepowered.api.entity.Player){
-				players.add(PorePlayer.of((org.spongepowered.api.entity.Player) e));
+			if (e instanceof org.spongepowered.api.entity.player.Player){
+				players.add(PorePlayer.of((org.spongepowered.api.entity.player.Player) e));
 			}
 		}
 		return players;

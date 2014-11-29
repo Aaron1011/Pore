@@ -9,7 +9,7 @@ public class PoreOcelot extends PoreTameableAnimal implements Ocelot {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreOcelot(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreOcelot(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

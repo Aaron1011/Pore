@@ -7,7 +7,7 @@ import org.bukkit.entity.Spider;
 public class PoreSpider extends PoreMonster implements Spider {
 
 	//TODO: make constructor as specific as possible
-	protected PoreSpider(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSpider(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

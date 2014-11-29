@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
-import org.spongepowered.api.entity.LivingEntity;
+import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	public static Converter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
 		if (converter == null) {
 			converter = new ParentConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
-					LivingEntity.class, PoreLivingEntity.getLivingEntityConverter()
+					Living.class, PoreLivingEntity.getLivingEntityConverter()
 			) {
 				@Override
 				protected PoreEntity convert(org.spongepowered.api.entity.Entity handle) {

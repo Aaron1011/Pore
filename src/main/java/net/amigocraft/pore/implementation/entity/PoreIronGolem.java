@@ -9,7 +9,7 @@ public class PoreIronGolem extends PoreGolem implements IronGolem {
 	//TODO: bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreIronGolem(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreIronGolem(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

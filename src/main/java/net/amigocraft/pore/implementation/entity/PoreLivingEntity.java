@@ -10,21 +10,23 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.living.Living;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 public class PoreLivingEntity extends PoreEntity implements LivingEntity {
-	private static Converter<org.spongepowered.api.entity.LivingEntity, PoreLivingEntity> converter;
+	private static Converter<org.spongepowered.api.entity.living.Living, PoreLivingEntity> converter;
 
-	static Converter<org.spongepowered.api.entity.LivingEntity, PoreLivingEntity> getLivingEntityConverter() {
+	static Converter<Living, PoreLivingEntity> getLivingEntityConverter() {
 		if (converter == null) {
-			converter = new ParentConverter<org.spongepowered.api.entity.LivingEntity, PoreLivingEntity>(
-					org.spongepowered.api.entity.HumanEntity.class, PoreHumanEntity.getHumanEntityConverter()
+			converter = new ParentConverter<Living, PoreLivingEntity>(
+					Human.class, PoreHumanEntity.getHumanEntityConverter()
 			) {
 				@Override
-				protected PoreLivingEntity convert(org.spongepowered.api.entity.LivingEntity handle) {
+				protected PoreLivingEntity convert(Living handle) {
 					return new PoreLivingEntity(handle);
 				}
 			};
@@ -33,16 +35,16 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 		return converter;
 	}
 
-	protected PoreLivingEntity(org.spongepowered.api.entity.LivingEntity handle) {
+	protected PoreLivingEntity(org.spongepowered.api.entity.living.Living handle) {
 		super(handle);
 	}
 
 	@Override
-	public org.spongepowered.api.entity.LivingEntity getHandle() {
-		return (org.spongepowered.api.entity.LivingEntity) super.getHandle();
+	public org.spongepowered.api.entity.living.Living getHandle() {
+		return (org.spongepowered.api.entity.living.Living) super.getHandle();
 	}
 
-	public static PoreLivingEntity of(org.spongepowered.api.entity.LivingEntity handle) {
+	public static PoreLivingEntity of(org.spongepowered.api.entity.living.Living handle) {
 		return getLivingEntityConverter().apply(handle);
 	}
 

@@ -7,7 +7,7 @@ import org.bukkit.entity.minecart.RideableMinecart;
 public class PoreRideableMinecart extends PoreMinecart implements RideableMinecart {
 
 	//TODO: make constructor as specific as possible
-	protected PoreRideableMinecart(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreRideableMinecart(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

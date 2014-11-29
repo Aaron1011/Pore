@@ -6,7 +6,7 @@ import org.bukkit.entity.Ambient;
 public class PoreAmbient extends PoreLivingEntity implements Ambient {
 
 	//TODO: make constructor as specific as possible
-	protected PoreAmbient(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreAmbient(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -10,7 +10,7 @@ public class PoreWolf extends PoreTameableAnimal implements Wolf {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreWolf(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreWolf(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

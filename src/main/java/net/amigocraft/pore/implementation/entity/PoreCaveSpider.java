@@ -7,7 +7,7 @@ import org.bukkit.entity.EntityType;
 public class PoreCaveSpider extends PoreSpider implements CaveSpider {
 
 	//TODO: make constructor as specific as possible
-	protected PoreCaveSpider(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreCaveSpider(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -9,7 +9,7 @@ public class PoreSkeleton extends PoreMonster implements Skeleton {
 	// TODO: Bridge
 
 	//TODO: make constructor as specific as possible
-	protected PoreSkeleton(org.spongepowered.api.entity.LivingEntity handle){
+	protected PoreSkeleton(org.spongepowered.api.entity.living.Living handle){
 		super(handle);
 	}
 

@@ -14,20 +14,21 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
-import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.entity.living.Human;
+import org.spongepowered.api.entity.player.Player;
 
 import java.util.Set;
 
 public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
-	private static Converter<org.spongepowered.api.entity.HumanEntity, PoreHumanEntity> converter;
+	private static Converter<Human, PoreHumanEntity> converter;
 
-	static Converter<org.spongepowered.api.entity.HumanEntity, PoreHumanEntity> getHumanEntityConverter() {
+	static Converter<Human, PoreHumanEntity> getHumanEntityConverter() {
 		if (converter == null) {
-			converter = new ParentConverter<org.spongepowered.api.entity.HumanEntity, PoreHumanEntity>(
+			converter = new ParentConverter<Human, PoreHumanEntity>(
 					Player.class, PorePlayer.getPlayerConverter()
 			) {
 				@Override
-				protected PoreHumanEntity convert(org.spongepowered.api.entity.HumanEntity handle) {
+				protected PoreHumanEntity convert(Human handle) {
 					return new PoreHumanEntity(handle);
 				}
 			};
@@ -38,16 +39,16 @@ public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
 
 	//TODO: bridge
 
-	protected PoreHumanEntity(org.spongepowered.api.entity.HumanEntity handle) {
+	protected PoreHumanEntity(Human handle) {
 		super(handle);
 	}
 
 	@Override
-	public org.spongepowered.api.entity.HumanEntity getHandle() {
-		return (org.spongepowered.api.entity.HumanEntity) super.getHandle();
+	public Human getHandle() {
+		return (Human) super.getHandle();
 	}
 
-	public static PoreHumanEntity of(org.spongepowered.api.entity.HumanEntity handle) {
+	public static PoreHumanEntity of(Human handle) {
 		return getHumanEntityConverter().apply(handle);
 	}
 
