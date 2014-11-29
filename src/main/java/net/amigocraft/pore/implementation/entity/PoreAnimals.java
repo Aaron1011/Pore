@@ -2,9 +2,10 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.bukkit.entity.Animals;
 import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.entity.living.animal.Chicken;
+import org.spongepowered.api.entity.living.animal.Sheep;
 
 public class PoreAnimals extends PoreAgeable implements Animals {
 
@@ -13,8 +14,14 @@ public class PoreAnimals extends PoreAgeable implements Animals {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Animal, PoreAnimals> getAnimalConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Animal, PoreAnimals>(
+			converter = new TypeConverter<Animal, PoreAnimals>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+							.put(Chicken.class, PoreChicken.getChickenConverter())
+							.put(Chicken.class, PoreCow.getCowConverter())
+							.put(Chicken.class, PoreHorse.getHorseConverter())
+							.put(Chicken.class, PorePig.getPigConverter())
+							.put(Sheep.class, PoreSheep.getSheepConverter())
+							//.put(Tameable.class, PoreTameable.getTameableConverter()) //TODO
 							.build()
 			){
 				@Override

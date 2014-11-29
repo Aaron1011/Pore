@@ -2,9 +2,10 @@ package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.ComplexEntityPart;
-import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.complex.ComplexLivingPart;
+import org.spongepowered.api.entity.living.complex.EnderDragonPart;
 
 public class PoreComplexEntityPart extends PoreEntity implements ComplexEntityPart {
 
@@ -13,7 +14,9 @@ public class PoreComplexEntityPart extends PoreEntity implements ComplexEntityPa
 	@SuppressWarnings("unchecked")
 	static TypeConverter<ComplexLivingPart, PoreComplexEntityPart> getComplexEntityPartConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<ComplexLivingPart, PoreComplexEntityPart>(){
+			converter = new TypeConverter<ComplexLivingPart, PoreComplexEntityPart>(
+					EnderDragonPart.class, PoreEnderDragonPart.getEnderDragonPartConverter()
+			){
 				@Override
 				protected PoreComplexEntityPart convert(ComplexLivingPart handle) {
 					return new PoreComplexEntityPart(handle);
@@ -48,7 +51,7 @@ public class PoreComplexEntityPart extends PoreEntity implements ComplexEntityPa
 	}
 
 	@Override
-	public EnderDragon getParent() {
-		return (EnderDragon)PoreEnderDragon.of(getHandle().getParent());
+	public ComplexLivingEntity getParent() {
+		return PoreComplexLivingEntity.of(getHandle().getParent());
 	}
 }

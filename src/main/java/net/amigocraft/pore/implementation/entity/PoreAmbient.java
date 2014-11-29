@@ -1,7 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.bukkit.entity.Ambient;
 import org.spongepowered.api.entity.living.Bat;
 import org.spongepowered.api.entity.living.Living;
@@ -13,7 +12,7 @@ public class PoreAmbient extends PoreLivingEntity implements Ambient {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Living, PoreAmbient> getAmbientConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Living, PoreAmbient>(
+			converter = new TypeConverter<Living, PoreAmbient>(
 					Bat.class, PoreBat.getBatConverter()
 			){
 				@Override

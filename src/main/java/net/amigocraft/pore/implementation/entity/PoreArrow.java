@@ -13,9 +13,7 @@ public class PoreArrow extends PoreProjectile implements Arrow {
 
 	static TypeConverter<org.spongepowered.api.entity.projectile.Arrow, PoreArrow> getArrowConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<org.spongepowered.api.entity.projectile.Arrow, PoreArrow>(
-					//TODO: children converters
-			){
+			converter = new TypeConverter<org.spongepowered.api.entity.projectile.Arrow, PoreArrow>(){
 				@Override
 				protected PoreArrow convert(org.spongepowered.api.entity.projectile.Arrow handle) {
 					return new PoreArrow(handle);

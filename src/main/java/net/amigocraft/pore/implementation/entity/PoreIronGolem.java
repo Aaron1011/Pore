@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.golem.IronGolem;
@@ -14,7 +13,7 @@ public class PoreIronGolem extends PoreGolem implements org.bukkit.entity.IronGo
 	@SuppressWarnings("unchecked")
 	static TypeConverter<IronGolem, PoreIronGolem> getIronGolemConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<IronGolem, PoreIronGolem>(
+			converter = new TypeConverter<IronGolem, PoreIronGolem>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.build()
 			){

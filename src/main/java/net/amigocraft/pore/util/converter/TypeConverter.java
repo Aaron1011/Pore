@@ -1,46 +1,58 @@
-/**
- * This file is a part of Pore, licensed under the MIT License.
- *
- * Copyright (c) Maxim Roncacé
- * Copyright (c) Lapis Blue
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
 package net.amigocraft.pore.util.converter;
 
 import com.google.common.base.Function;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.MapMaker;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 
-/**
- * Contains a weak map between Sponge objects and their respective Pore wrappers.
- * This class allows for Pore to maintain a single wrapper for each object in Sponge, as opposed to multiple.
- * @param <S> The class of the Sponge object to be wrapped.
- * @param <B> The class of the Sponge class's corresponding wrapper in Pore.
- */
 public abstract class TypeConverter<S, B> implements Function<S, B> {
 
 	private final Map<S, B> instances = new MapMaker().concurrencyLevel(1).weakKeys().weakValues().makeMap();
 
-	/**
-	 * Returns a Pore wrapper for the given handle.
-	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
-	 * @param handle The Sponge object to wrap.
-	 * @return The Pore wrapper for the given Sponge object (<b>handle</b>).
-	 */
+	private final ImmutableMap<Class<? extends S>, TypeConverter<? extends S, ? extends B>> children;
+
+	@SuppressWarnings("unchecked")
+	protected TypeConverter() {
+		this.children = (ImmutableMap)ImmutableMap.of();
+	}
+
+	// We need some strange workarounds here to make it work on Java 6
+	@SuppressWarnings("unchecked")
+	protected TypeConverter(Class<? extends S> type, TypeConverter<? extends S, ? extends B> cache) {
+		this.children = (ImmutableMap)ImmutableMap.of(type, cache);
+	}
+
+	protected TypeConverter(ImmutableMap<Class<? extends S>, TypeConverter<? extends S, ? extends B>> children) {
+		this.children = children;
+	}
+
 	@Nullable
 	@Override
+	@SuppressWarnings("unchecked")
 	public B apply(@Nullable S handle) {
 		if (handle == null) return null;
+
+		// Get the class of the sponge object
+		Class<? extends S> spongeType = (Class<? extends S>) handle.getClass();
+
+		// Check for the specific implementation first
+		TypeConverter<? extends S, ? extends B> child = children.get(spongeType);
+		if (child != null) {
+			// Use the specific cache directly
+			return child.applyUnchecked(handle);
+		}
+
+		// We should still check if there is a more accurate implementation
+		for (Map.Entry<Class<? extends S>, TypeConverter<? extends S, ? extends B>> entry : children.entrySet()) {
+			if (entry.getKey().isAssignableFrom(spongeType)) {
+				// Use the more accurate cache instead
+				return entry.getValue().applyUnchecked(handle);
+			}
+		}
+
+		// We don't have any specific implementation for that type, so we'll use a generic one
 		B result = instances.get(handle);
 		if (result == null) {
 			instances.put(handle, result = convert(handle));

@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.bukkit.entity.WaterMob;
 import org.spongepowered.api.entity.living.Agent;
 
@@ -15,7 +14,7 @@ public class PoreWaterMob extends PoreCreature implements WaterMob {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Agent, PoreWaterMob> getWaterMobConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Agent, PoreWaterMob>(
+			converter = new TypeConverter<Agent, PoreWaterMob>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.build()
 			){

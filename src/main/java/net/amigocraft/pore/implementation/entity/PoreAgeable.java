@@ -2,10 +2,10 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
 import org.spongepowered.api.entity.living.animal.Animal;
+import org.spongepowered.api.entity.living.villager.Villager;
 
 public class PoreAgeable extends PoreCreature implements Ageable {
 
@@ -14,9 +14,10 @@ public class PoreAgeable extends PoreCreature implements Ageable {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable> getAgeableConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable>(
+			converter = new TypeConverter<org.spongepowered.api.entity.living.Ageable, PoreAgeable>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.put(Animal.class, PoreAnimals.getAnimalConverter())
+							.put(Villager.class, PoreVillager.getVillagerConverter())
 							.build()
 			){
 				@Override

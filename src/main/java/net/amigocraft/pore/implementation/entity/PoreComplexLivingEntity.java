@@ -5,6 +5,7 @@ import org.bukkit.entity.ComplexEntityPart;
 import org.bukkit.entity.ComplexLivingEntity;
 import org.spongepowered.api.entity.living.complex.ComplexLiving;
 import org.spongepowered.api.entity.living.complex.ComplexLivingPart;
+import org.spongepowered.api.entity.living.complex.EnderDragon;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,9 @@ public class PoreComplexLivingEntity extends PoreLivingEntity implements Complex
 	@SuppressWarnings("unchecked")
 	static TypeConverter<ComplexLiving, PoreComplexLivingEntity> getComplexLivingEntityConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<ComplexLiving, PoreComplexLivingEntity>(){
+			converter = new TypeConverter<ComplexLiving, PoreComplexLivingEntity>(
+					EnderDragon.class, PoreEnderDragon.getEnderDragonConverter()
+			){
 				@Override
 				protected PoreComplexLivingEntity convert(ComplexLiving handle) {
 					return new PoreComplexLivingEntity(handle);

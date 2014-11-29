@@ -2,11 +2,9 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.*;
 import org.bukkit.projectiles.ProjectileSource;
-import org.spongepowered.api.entity.projectile.*;
 import org.spongepowered.api.entity.projectile.Arrow;
 import org.spongepowered.api.entity.projectile.Egg;
 import org.spongepowered.api.entity.projectile.EnderPearl;
@@ -22,7 +20,7 @@ public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Proj
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Projectile, PoreProjectile> getProjectileConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Projectile, PoreProjectile>(
+			converter = new TypeConverter<Projectile, PoreProjectile>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.put(Arrow.class, PoreArrow.getArrowConverter())
 							.put(Egg.class, PoreEgg.getEggConverter())

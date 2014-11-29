@@ -3,7 +3,6 @@ package net.amigocraft.pore.implementation.entity;
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.*;
 import net.amigocraft.pore.util.converter.vector.LocationFactory;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import net.amigocraft.pore.util.converter.vector.Vector3dFactory;
 import org.apache.commons.lang.NotImplementedException;
@@ -30,7 +29,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	@SuppressWarnings("unchecked")
 	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
+			converter = new TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
 					(ImmutableMap)ImmutableMap.builder()
 					.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
 					.put(Projectile.class, PoreProjectile.getProjectileConverter())

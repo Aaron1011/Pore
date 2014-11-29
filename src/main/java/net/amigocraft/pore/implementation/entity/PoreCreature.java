@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.LivingEntity;
@@ -18,7 +17,7 @@ public class PoreCreature extends PoreLivingEntity implements Creature {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Agent, PoreCreature> getCreatureConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Agent, PoreCreature>(
+			converter = new TypeConverter<Agent, PoreCreature>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.put(Ageable.class, PoreAgeable.getAgeableConverter())
 							.put(Golem.class, PoreGolem.getGolemConverter())

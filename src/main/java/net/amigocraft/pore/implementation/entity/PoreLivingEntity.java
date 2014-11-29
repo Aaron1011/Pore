@@ -1,7 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -22,7 +21,7 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 
 	static TypeConverter<Living, PoreLivingEntity> getLivingEntityConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Living, PoreLivingEntity>(
+			converter = new TypeConverter<Living, PoreLivingEntity>(
 					Human.class, PoreHumanEntity.getHumanEntityConverter()
 			) {
 				@Override

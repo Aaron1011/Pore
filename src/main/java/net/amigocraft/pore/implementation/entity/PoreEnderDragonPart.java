@@ -2,6 +2,7 @@ package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EnderDragonPart;
 import org.bukkit.entity.Entity;
 
@@ -40,6 +41,10 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 	 */
 	public static PoreEnderDragonPart of(org.spongepowered.api.entity.living.complex.EnderDragonPart handle) {
 		return converter.apply(handle);
+	}
+
+	public EnderDragon getParent(){
+		return PoreEnderDragon.of(getHandle().getParent());
 	}
 
 	@Override

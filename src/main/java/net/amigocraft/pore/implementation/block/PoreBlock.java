@@ -23,15 +23,15 @@ import org.spongepowered.api.block.BlockType;
 import java.util.Collection;
 import java.util.List;
 
-public class PoreBlock extends PoreWrapper<org.spongepowered.api.block.Block> implements Block {
+public class PoreBlock extends PoreWrapper<org.spongepowered.api.block.BlockLoc> implements Block {
 
-	private static TypeConverter<org.spongepowered.api.block.Block, PoreBlock> converter;
+	private static TypeConverter<org.spongepowered.api.block.BlockLoc, PoreBlock> converter;
 
-	static TypeConverter<org.spongepowered.api.block.Block, PoreBlock> getConverter() {
+	static TypeConverter<org.spongepowered.api.block.BlockLoc, PoreBlock> getConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<org.spongepowered.api.block.Block, PoreBlock>() {
+			converter = new TypeConverter<org.spongepowered.api.block.BlockLoc, PoreBlock>() {
 				@Override
-				protected PoreBlock convert(org.spongepowered.api.block.Block handle) {
+				protected PoreBlock convert(org.spongepowered.api.block.BlockLoc handle) {
 					return new PoreBlock(handle);
 				}
 			};
@@ -46,11 +46,11 @@ public class PoreBlock extends PoreWrapper<org.spongepowered.api.block.Block> im
 	 * @param handle The Sponge object to wrap.
 	 * @return A Pore wrapper for the given Sponge object.
 	 */
-	public static PoreBlock of(org.spongepowered.api.block.Block handle) {
+	public static PoreBlock of(org.spongepowered.api.block.BlockLoc handle) {
 		return getConverter().apply(handle);
 	}
 
-	private PoreBlock(org.spongepowered.api.block.Block handle) {
+	private PoreBlock(org.spongepowered.api.block.BlockLoc handle) {
 		super(handle);
 	}
 

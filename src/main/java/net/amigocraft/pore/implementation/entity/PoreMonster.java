@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import net.amigocraft.pore.util.converter.ParentTypeConverter;
 import org.spongepowered.api.entity.living.monster.Monster;
 
 public class PoreMonster extends PoreCreature implements org.bukkit.entity.Monster {
@@ -12,7 +11,7 @@ public class PoreMonster extends PoreCreature implements org.bukkit.entity.Monst
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Monster, PoreMonster> getMonsterConverter() {
 		if (converter == null) {
-			converter = new ParentTypeConverter<Monster, PoreMonster>(
+			converter = new TypeConverter<Monster, PoreMonster>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.build()
 			){
