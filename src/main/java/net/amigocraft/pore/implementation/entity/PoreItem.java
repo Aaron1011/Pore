@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.ItemStackConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
@@ -51,21 +52,21 @@ public class PoreItem extends PoreEntity implements org.bukkit.entity.Item {
 
 	@Override
 	public ItemStack getItemStack() {
-		throw new NotImplementedException();
+		return ItemStackConverter.of(getHandle().getItemStack());
 	}
 
 	@Override
 	public void setItemStack(ItemStack stack) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public int getPickupDelay() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setPickupDelay(int delay) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 }

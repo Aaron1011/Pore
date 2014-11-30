@@ -58,34 +58,4 @@ public class PoreFish extends PoreProjectile implements Fish {
 	public void setBiteChance(double chance) throws IllegalArgumentException {
 		throw new NotImplementedException();
 	}
-
-	@Override
-	public LivingEntity _INVALID_getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public ProjectileSource getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void _INVALID_setShooter(LivingEntity shooter) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void setShooter(ProjectileSource source) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public boolean doesBounce() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void setBounce(boolean doesBounce) {
-		throw new NotImplementedException();
-	}
 }

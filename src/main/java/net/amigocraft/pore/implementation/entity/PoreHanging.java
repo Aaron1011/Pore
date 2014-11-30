@@ -1,6 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
+import net.amigocraft.pore.util.converter.DirectionConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.block.BlockFace;
@@ -51,25 +52,24 @@ public class PoreHanging extends PoreEntity implements org.bukkit.entity.Hanging
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public boolean setFacingDirection(BlockFace face, boolean force) {
-		throw new NotImplementedException();
+		getHandle().setHangingDirection(DirectionConverter.of(face), force);
+		return true; //TODO
 	}
 
 	@Override
 	public BlockFace getAttachedFace() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setFacingDirection(BlockFace face) {
-		throw new NotImplementedException();
+		setFacingDirection(face, false);
 	}
 
 	@Override
 	public BlockFace getFacing() {
-		throw new NotImplementedException();
+		return DirectionConverter.of(getHandle().getHangingDirection());
 	}
 }

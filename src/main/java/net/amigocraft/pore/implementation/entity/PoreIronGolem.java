@@ -52,11 +52,11 @@ public class PoreIronGolem extends PoreGolem implements org.bukkit.entity.IronGo
 
 	@Override
 	public boolean isPlayerCreated() {
-		throw new NotImplementedException();
+		return getHandle().isPlayerCreated();
 	}
 
 	@Override
 	public void setPlayerCreated(boolean playerCreated) {
-		throw new NotImplementedException();
+		getHandle().setPlayerCreated(playerCreated);
 	}
 }

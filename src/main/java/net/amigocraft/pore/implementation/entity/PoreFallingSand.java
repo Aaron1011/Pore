@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.MaterialConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Material;
@@ -52,26 +53,26 @@ public class PoreFallingSand extends PoreEntity implements FallingSand {
 
 	@Override
 	public Material getMaterial() {
-		throw new NotImplementedException();
+		return MaterialConverter.toBukkitMaterial(getHandle().getBlockState().getType());
 	}
 
 	@Override
 	public int getBlockId() {
-		throw new NotImplementedException();
+		return MaterialConverter.toBukkitMaterial(getHandle().getBlockState().getType()).getId();
 	}
 
 	@Override
 	public byte getBlockData() {
-		throw new NotImplementedException();
+		return getHandle().getBlockState().getDataValue();
 	}
 
 	@Override
 	public boolean getDropItem() {
-		throw new NotImplementedException();
+		return getHandle().getCanDropAsItem();
 	}
 
 	@Override
 	public void setDropItem(boolean drop) {
-		throw new NotImplementedException();
+		getHandle().setCanDropAsItem(drop);
 	}
 }

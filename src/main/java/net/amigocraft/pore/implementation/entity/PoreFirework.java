@@ -42,8 +42,6 @@ public class PoreFirework extends PoreEntity implements Firework {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.FIREWORK;
@@ -51,16 +49,16 @@ public class PoreFirework extends PoreEntity implements Firework {
 
 	@Override
 	public FireworkMeta getFireworkMeta() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setFireworkMeta(FireworkMeta meta) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void detonate() {
-		throw new NotImplementedException();
+		getHandle().detonate();
 	}
 }

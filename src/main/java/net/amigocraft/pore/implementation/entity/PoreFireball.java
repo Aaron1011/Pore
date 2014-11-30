@@ -5,8 +5,6 @@ import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 import org.spongepowered.api.entity.projectile.fireball.LargeFireball;
 import org.spongepowered.api.entity.projectile.fireball.SmallFireball;
@@ -63,12 +61,12 @@ public class PoreFireball extends PoreProjectile implements Fireball {
 
 	@Override
 	public void setDirection(Vector direction) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public Vector getDirection() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
@@ -88,36 +86,6 @@ public class PoreFireball extends PoreProjectile implements Fireball {
 
 	@Override
 	public boolean isIncendiary() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public LivingEntity _INVALID_getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public ProjectileSource getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void _INVALID_setShooter(LivingEntity shooter) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void setShooter(ProjectileSource source) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public boolean doesBounce() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void setBounce(boolean doesBounce) {
 		throw new NotImplementedException();
 	}
 }

@@ -15,6 +15,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.service.permission.Subject;
 
 import java.util.Set;
 
@@ -56,8 +57,6 @@ public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
 		return getHumanEntityConverter().apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public String getName() {
 		if (getHandle() instanceof Player)
@@ -67,161 +66,164 @@ public class PoreHumanEntity extends PoreLivingEntity implements HumanEntity {
 
 	@Override
 	public PlayerInventory getInventory() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public Inventory getEnderChest() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean setWindowProperty(InventoryView.Property prop, int value) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public InventoryView getOpenInventory() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public InventoryView openInventory(Inventory inventory) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public InventoryView openWorkbench(Location location, boolean force) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public InventoryView openEnchanting(Location location, boolean force) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void openInventory(InventoryView inventory) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void closeInventory() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public ItemStack getItemInHand() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setItemInHand(ItemStack item) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public ItemStack getItemOnCursor() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setItemOnCursor(ItemStack item) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isSleeping() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public int getSleepTicks() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public GameMode getGameMode() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setGameMode(GameMode mode) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isBlocking() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public int getExpToLevel() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isPermissionSet(String name) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isPermissionSet(Permission perm) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean hasPermission(String name) {
+		if (this instanceof Subject){
+			return ((Subject)this).isPermitted(name);
+		}
 		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean hasPermission(Permission perm) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public PermissionAttachment addAttachment(Plugin plugin) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void removeAttachment(PermissionAttachment attachment) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void recalculatePermissions() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isOp() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setOp(boolean value) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 }
