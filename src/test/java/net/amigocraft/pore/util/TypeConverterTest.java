@@ -17,7 +17,7 @@ public class TypeConverterTest {
 	@Before
 	public void initConverters() {
 		// Initialize the converters
-		PoreEntity.getEntityConverter();
+		PoreEntity.getConverter();
 	}
 
 	@Test

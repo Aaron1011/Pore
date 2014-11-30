@@ -38,7 +38,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	private static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> converter;
 
 	@SuppressWarnings("unchecked")
-	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getEntityConverter() {
+	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
 					(ImmutableMap)ImmutableMap.builder()
@@ -51,11 +51,11 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 							.put(Hanging.class, PoreHanging.getHangingConverter())
 							.put(Item.class, PoreItem.getItemConverter())
 							.put(Lightning.class, PoreLightningStrike.getLightningStrikeConverter())
-							.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
 							.put(Projectile.class, PoreProjectile.getProjectileConverter())
 							.put(PrimedTNT.class, PoreTNTPrimed.getTNTPrimedConverter())
-							.put(Entity.class, PoreVehicle.getVehicleConverter())
+							//.put(Entity.class, PoreVehicle.getVehicleConverter())
 							.put(WeatherEffect.class, PoreWeather.getWeatherConverter())
+							.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
 							.build()
 			) {
 				@Override
@@ -84,7 +84,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	 * @return A Pore wrapper for the given Sponge object.
 	 */
 	public static PoreEntity of(org.spongepowered.api.entity.Entity handle) {
-		return getEntityConverter().apply(handle);
+		return getConverter().apply(handle);
 	}
 
 	@Override

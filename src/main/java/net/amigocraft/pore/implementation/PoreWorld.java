@@ -31,7 +31,6 @@ import org.spongepowered.api.world.extent.Extent;
 
 import javax.annotation.Nullable;
 import java.io.File;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -260,7 +259,7 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 	public List<Entity> getEntities() {
 		// TODO: Should this be unmodifiable?
 		return PoreCollections.<org.spongepowered.api.entity.Entity, Entity>transformToList(
-				getHandle().getEntities(), PoreEntity.getEntityConverter()
+				getHandle().getEntities(), PoreEntity.getConverter()
 		);
 	}
 

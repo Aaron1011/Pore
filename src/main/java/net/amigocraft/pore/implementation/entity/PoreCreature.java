@@ -22,7 +22,7 @@ public class PoreCreature extends PoreLivingEntity implements Creature {
 							.put(Ageable.class, PoreAgeable.getAgeableConverter())
 							.put(Golem.class, PoreGolem.getGolemConverter())
 							.put(Monster.class, PoreMonster.getMonsterConverter())
-							.put(Agent.class, PoreWaterMob.getWaterMobConverter())
+							//.put(Agent.class, PoreWaterMob.getWaterMobConverter())
 							.build()
 			){
 				@Override

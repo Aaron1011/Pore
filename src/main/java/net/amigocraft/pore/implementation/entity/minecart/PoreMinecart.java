@@ -1,11 +1,12 @@
 package net.amigocraft.pore.implementation.entity.minecart;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.implementation.entity.PoreVehicle;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.util.Vector;
-import org.spongepowered.api.entity.vehicle.minecart.Minecart;
+import org.spongepowered.api.entity.vehicle.minecart.*;
 
 public class PoreMinecart extends PoreVehicle implements org.bukkit.entity.Minecart {
 
@@ -14,7 +15,17 @@ public class PoreMinecart extends PoreVehicle implements org.bukkit.entity.Minec
 	@SuppressWarnings("unchecked")
 	public static TypeConverter<Minecart, PoreMinecart> getMinecartConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Minecart, PoreMinecart>(){
+			converter = new TypeConverter<Minecart, PoreMinecart>(
+					(ImmutableMap)ImmutableMap.builder()
+							.put(MinecartCommandBlock.class, PoreCommandMinecart.getCommandMinecartConverter())
+							.put(MinecartTNT.class, PoreExplosiveMinecart.getExplosiveMinecartConverter())
+							.put(MinecartHopper.class, PoreHopperMinecart.getHopperMinecartConverter())
+							.put(MinecartFurnace.class, PorePoweredMinecart.getPoweredMinecartConverter())
+							.put(MinecartRideable.class, PoreRideableMinecart.getRideableMinecartConverter())
+							.put(MinecartMobSpawner.class, PoreRideableMinecart.getRideableMinecartConverter())
+							.put(MinecartChest.class, PoreStorageMinecart.getStorageMinecartConverter())
+							.build()
+			){
 				@Override
 				protected PoreMinecart convert(Minecart handle) {
 					return new PoreMinecart(handle);

@@ -27,12 +27,12 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 		if (converter == null) {
 			converter = new TypeConverter<Living, PoreLivingEntity>(
 					(ImmutableMap)ImmutableMap.builder()
-							.put(Living.class, PoreAmbient.getAmbientConverter())
+							//.put(Living.class, PoreAmbient.getAmbientConverter())
 							.put(ComplexLiving.class, PoreComplexLivingEntity.getComplexLivingEntityConverter())
-							.put(Agent.class, PoreCreature.getCreatureConverter())
-							.put(Living.class, PoreFlying.getFlyingConverter())
+							//.put(Living.class, PoreFlying.getFlyingConverter())
 							.put(Human.class, PoreHumanEntity.getHumanEntityConverter())
 							.put(Slime.class, PoreSlime.getSlimeConverter())
+							.put(Agent.class, PoreCreature.getCreatureConverter())
 							.build()
 			) {
 				@Override

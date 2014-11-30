@@ -5,7 +5,6 @@ import net.amigocraft.pore.implementation.entity.PoreEntity;
 import org.bukkit.entity.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -24,7 +23,7 @@ public class WorldEntitiesTest {
 	@Before
 	public void initTest() {
 		// Initialize converter
-		PoreEntity.getEntityConverter();
+		PoreEntity.getConverter();
 
 		// Initialize world
 		world = PoreWorld.of(mock(World.class));
@@ -40,7 +39,9 @@ public class WorldEntitiesTest {
 				mock(org.spongepowered.api.entity.living.Living.class),
 				mock(org.spongepowered.api.entity.Entity.class),
 				mock(org.spongepowered.api.entity.living.Human.class),
-				mock(org.spongepowered.api.entity.player.Player.class)
+				mock(org.spongepowered.api.entity.player.Player.class),
+				mock(org.spongepowered.api.entity.living.animal.Cow.class),
+				mock(org.spongepowered.api.entity.living.animal.Pig.class)
 		));
 	}
 
@@ -49,25 +50,28 @@ public class WorldEntitiesTest {
 		List<Entity> entities = world.getEntities();
 
 		// All of the entities should be an instance of Entity
-		assertEquals(16, filter(entities, instanceOf(Entity.class)).size());
-		assertEquals(14, filter(entities, instanceOf(LivingEntity.class)).size());
+		assertEquals(14, filter(entities, instanceOf(Entity.class)).size());
+		assertEquals(12, filter(entities, instanceOf(LivingEntity.class)).size());
 		assertEquals(7, filter(entities, instanceOf(HumanEntity.class)).size());
 		assertEquals(5, filter(entities, instanceOf(Player.class)).size());
+		assertEquals(2, filter(entities, instanceOf(Animals.class)).size());
 	}
 
 	@Test
 	public void checkEntitiesByClassCounts() {
 		// This is the same as above actually
-		assertEquals(16, world.getEntitiesByClass(Entity.class).size());
-		assertEquals(14, world.getEntitiesByClass(LivingEntity.class).size());
+		assertEquals(14, world.getEntitiesByClass(Entity.class).size());
+		assertEquals(12, world.getEntitiesByClass(LivingEntity.class).size());
+		Collection list = world.getEntitiesByClass(Entity.class);
 		assertEquals(7, world.getEntitiesByClass(HumanEntity.class).size());
 		assertEquals(5, world.getEntitiesByClass(Player.class).size());
+		assertEquals(2, world.getEntitiesByClass(Animals.class).size());
 	}
 
 	@Test
 	public void checkEntitiesByClassesCounts() {
 		// This should still return all entities
-		assertEquals(12, world.getEntitiesByClasses(Entity.class, LivingEntity.class).size());
+		assertEquals(14, world.getEntitiesByClasses(Entity.class, LivingEntity.class).size());
 		// TODO: Add more tests, not possible right now
 	}
 
@@ -78,6 +82,7 @@ public class WorldEntitiesTest {
 		checkEntityTypes(world.getEntitiesByClass(LivingEntity.class), LivingEntity.class);
 		checkEntityTypes(world.getEntitiesByClass(HumanEntity.class), HumanEntity.class);
 		checkEntityTypes(world.getEntitiesByClass(Player.class), Player.class);
+		checkEntityTypes(world.getEntitiesByClass(Animals.class), Animals.class);
 	}
 
 	@Test

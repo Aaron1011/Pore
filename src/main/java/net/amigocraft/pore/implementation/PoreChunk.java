@@ -80,7 +80,7 @@ public class PoreChunk extends PoreWrapper<org.spongepowered.api.world.Chunk> im
 	@Override
 	public Entity[] getEntities() {
 		Collection<org.spongepowered.api.entity.Entity> entities = getHandle().getEntities();
-		return Collections2.transform(entities, PoreEntity.getEntityConverter()).toArray(new Entity[entities.size()]);
+		return Collections2.transform(entities, PoreEntity.getConverter()).toArray(new Entity[entities.size()]);
 	}
 
 	@Override

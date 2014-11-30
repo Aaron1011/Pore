@@ -3,9 +3,9 @@ package net.amigocraft.pore.implementation.entity;
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.Animals;
-import org.spongepowered.api.entity.living.animal.Animal;
-import org.spongepowered.api.entity.living.animal.Chicken;
-import org.spongepowered.api.entity.living.animal.Sheep;
+import org.bukkit.entity.Horse;
+import org.spongepowered.api.entity.living.Tameable;
+import org.spongepowered.api.entity.living.animal.*;
 
 public class PoreAnimals extends PoreAgeable implements Animals {
 
@@ -17,11 +17,11 @@ public class PoreAnimals extends PoreAgeable implements Animals {
 			converter = new TypeConverter<Animal, PoreAnimals>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
 							.put(Chicken.class, PoreChicken.getChickenConverter())
-							.put(Chicken.class, PoreCow.getCowConverter())
-							.put(Chicken.class, PoreHorse.getHorseConverter())
-							.put(Chicken.class, PorePig.getPigConverter())
+							.put(Cow.class, PoreCow.getCowConverter())
+							.put(Horse.class, PoreHorse.getHorseConverter())
+							.put(Pig.class, PorePig.getPigConverter())
 							.put(Sheep.class, PoreSheep.getSheepConverter())
-							//.put(Tameable.class, PoreTameable.getTameableConverter()) //TODO
+							.put(Tameable.class, PoreTameable.getTameableConverter())
 							.build()
 			){
 				@Override
