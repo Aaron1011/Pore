@@ -41,8 +41,6 @@ public class PoreWitherSkull extends PoreFireball implements org.bukkit.entity.W
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.WITHER_SKULL;
@@ -50,11 +48,11 @@ public class PoreWitherSkull extends PoreFireball implements org.bukkit.entity.W
 
 	@Override
 	public void setCharged(boolean charged) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isCharged() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 }

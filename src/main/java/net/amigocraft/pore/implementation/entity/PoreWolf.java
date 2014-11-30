@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.DyeColorConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.DyeColor;
@@ -42,8 +43,6 @@ public class PoreWolf extends PoreTameable implements org.bukkit.entity.Wolf {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.WOLF;
@@ -51,31 +50,31 @@ public class PoreWolf extends PoreTameable implements org.bukkit.entity.Wolf {
 
 	@Override
 	public boolean isAngry() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setAngry(boolean angry) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isSitting() {
-		throw new NotImplementedException();
+		return getHandle().isSitting();
 	}
 
 	@Override
 	public void setSitting(boolean sitting) {
-		throw new NotImplementedException();
+		getHandle().setSitting(sitting);
 	}
 
 	@Override
 	public DyeColor getCollarColor() {
-		throw new NotImplementedException();
+		return DyeColorConverter.of(getHandle().getColor());
 	}
 
 	@Override
 	public void setCollarColor(DyeColor color) {
-		throw new NotImplementedException();
+		getHandle().setColor(DyeColorConverter.of(color));
 	}
 }

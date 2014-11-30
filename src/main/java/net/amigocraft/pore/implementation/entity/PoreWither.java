@@ -40,8 +40,6 @@ public class PoreWither extends PoreMonster implements org.bukkit.entity.Wither 
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.WITHER;

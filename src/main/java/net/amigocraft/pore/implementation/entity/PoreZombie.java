@@ -44,8 +44,6 @@ public class PoreZombie extends PoreMonster implements org.bukkit.entity.Zombie 
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.ZOMBIE;
@@ -53,21 +51,24 @@ public class PoreZombie extends PoreMonster implements org.bukkit.entity.Zombie 
 
 	@Override
 	public boolean isBaby() {
-		throw new NotImplementedException();
+		return getHandle().isBaby();
 	}
 
 	@Override
 	public void setBaby(boolean flag) {
-		throw new NotImplementedException();
+		if (flag)
+			getHandle().setBaby();
+		else
+			getHandle().setAdult();
 	}
 
 	@Override
 	public boolean isVillager() {
-		throw new NotImplementedException();
+		return getHandle().isVillagerZombie();
 	}
 
 	@Override
 	public void setVillager(boolean flag) {
-		throw new NotImplementedException();
+		getHandle().setVillagerZombie(flag);
 	}
 }

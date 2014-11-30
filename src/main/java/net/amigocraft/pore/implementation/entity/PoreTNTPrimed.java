@@ -43,8 +43,6 @@ public class PoreTNTPrimed extends PoreEntity implements TNTPrimed {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.PRIMED_TNT;
@@ -52,36 +50,36 @@ public class PoreTNTPrimed extends PoreEntity implements TNTPrimed {
 
 	@Override
 	public void setFuseTicks(int fuseTicks) {
-		throw new NotImplementedException();
+		getHandle().setFuseDuration(fuseTicks);
 	}
 
 	@Override
 	public int getFuseTicks() {
-		throw new NotImplementedException();
+		return getHandle().getFuseDuration();
 	}
 
 	@Override
 	public Entity getSource() {
-		throw new NotImplementedException();
+		return PoreEntity.of(getHandle().getDetonator().get());
 	}
 
 	@Override
 	public void setYield(float yield) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public float getYield() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setIsIncendiary(boolean isIncendiary) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public boolean isIncendiary() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 }

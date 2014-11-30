@@ -1,8 +1,9 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.ProfessionConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
+import org.spongepowered.api.entity.living.villager.Careers;
 import org.spongepowered.api.entity.living.villager.Villager;
 
 public class PoreVillager extends PoreAgeable implements org.bukkit.entity.Villager {
@@ -50,11 +51,12 @@ public class PoreVillager extends PoreAgeable implements org.bukkit.entity.Villa
 
 	@Override
 	public Profession getProfession() {
-		throw new NotImplementedException();
+		return ProfessionConverter.of(getHandle().getCareer().getProfession());
 	}
 
 	@Override
 	public void setProfession(Profession profession) {
-		throw new NotImplementedException();
+		//TODO: not really sure what to do here
+		getHandle().setCareer(Careers.getCareersForProfession(ProfessionConverter.of(profession)).get(0));
 	}
 }
