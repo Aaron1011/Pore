@@ -42,8 +42,6 @@ public class PorePigZombie extends PoreZombie implements PigZombie {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.PIG_ZOMBIE;
@@ -51,21 +49,21 @@ public class PorePigZombie extends PoreZombie implements PigZombie {
 
 	@Override
 	public int getAnger() {
-		throw new NotImplementedException();
+		return getHandle().getAngerLevel();
 	}
 
 	@Override
 	public void setAnger(int level) {
-		throw new NotImplementedException();
+		getHandle().setAngerLevel(level);
 	}
 
 	@Override
 	public void setAngry(boolean angry) {
-		throw new NotImplementedException();
+		setAnger(angry ? 400 : 0);
 	}
 
 	@Override
 	public boolean isAngry() {
-		throw new NotImplementedException();
+		return getAnger() > 0;
 	}
 }

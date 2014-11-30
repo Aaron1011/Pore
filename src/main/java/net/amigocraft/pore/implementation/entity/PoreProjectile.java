@@ -40,8 +40,6 @@ public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Proj
 		return converter;
 	}
 
-	//TODO: bridge
-
 	protected PoreProjectile(Projectile handle) {
 		super(handle);
 	}
@@ -111,11 +109,11 @@ public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Proj
 
 	@Override
 	public boolean doesBounce() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public void setBounce(boolean doesBounce) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 }

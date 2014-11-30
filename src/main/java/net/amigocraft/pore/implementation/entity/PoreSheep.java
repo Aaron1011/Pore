@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.DyeColorConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.DyeColor;
@@ -42,8 +43,6 @@ public class PoreSheep extends PoreAnimals implements org.bukkit.entity.Sheep {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SHEEP;
@@ -51,21 +50,21 @@ public class PoreSheep extends PoreAnimals implements org.bukkit.entity.Sheep {
 
 	@Override
 	public boolean isSheared() {
-		throw new NotImplementedException();
+		return getHandle().isSheared();
 	}
 
 	@Override
 	public void setSheared(boolean flag) {
-		throw new NotImplementedException();
+		getHandle().setSheared(flag);
 	}
 
 	@Override
 	public DyeColor getColor() {
-		throw new NotImplementedException();
+		return DyeColorConverter.of(getHandle().getColor());
 	}
 
 	@Override
 	public void setColor(DyeColor color) {
-		throw new NotImplementedException();
+		getHandle().setColor(DyeColorConverter.of(color));
 	}
 }

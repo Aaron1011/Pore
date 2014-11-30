@@ -13,11 +13,12 @@ import org.spongepowered.api.entity.player.Player;
 import org.spongepowered.api.util.Identifiable;
 
 import java.net.InetSocketAddress;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-//TODO: bridge
+//TODO: still a ton of work to be done here
 
 public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Player {
 
@@ -451,12 +452,12 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public boolean isOnline() {
-		throw new NotImplementedException();
+		return getHandle().isOnline();
 	}
 
 	@Override
 	public boolean isBanned() {
-		throw new NotImplementedException();
+		return getHandle().isBanned();
 	}
 
 	@Override
@@ -466,7 +467,7 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public boolean isWhitelisted() {
-		throw new NotImplementedException();
+		return getHandle().isWhitelisted();
 	}
 
 	@Override
@@ -476,7 +477,7 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public org.bukkit.entity.Player getPlayer() {
-		throw new NotImplementedException();
+		return this;
 	}
 
 	@Override
@@ -491,7 +492,7 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public boolean hasPlayedBefore() {
-		throw new NotImplementedException();
+		return getHandle().hasJoinedBefore();
 	}
 
 	@Override
@@ -616,7 +617,9 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public Map<String, Object> serialize() {
-		throw new NotImplementedException();
+		Map<String, Object> result = new LinkedHashMap<String, Object>();
+		result.put("name", getName());
+		return result;
 	}
 
 	@Override
@@ -631,11 +634,6 @@ public class PorePlayer extends PoreHumanEntity implements org.bukkit.entity.Pla
 
 	@Override
 	public UUID getUniqueId() {
-		if (getHandle() instanceof Identifiable) { // this should never return false, but it checks just in case
-			return ((Identifiable)getHandle()).getUniqueId();
-		}
-		else {
-			throw new UnsupportedOperationException("getUniqueId called on non-identifiable object");
-		}
+		return getHandle().getUniqueId();
 	}
 }

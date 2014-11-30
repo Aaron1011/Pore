@@ -41,8 +41,6 @@ public class PorePig extends PoreAnimals implements org.bukkit.entity.Pig {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.PIG;
@@ -50,11 +48,11 @@ public class PorePig extends PoreAnimals implements org.bukkit.entity.Pig {
 
 	@Override
 	public boolean hasSaddle() {
-		throw new NotImplementedException();
+		return getHandle().isSaddled();
 	}
 
 	@Override
 	public void setSaddle(boolean saddled) {
-		throw new NotImplementedException();
+		getHandle().setSaddled(saddled);
 	}
 }

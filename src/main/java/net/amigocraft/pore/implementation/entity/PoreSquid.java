@@ -40,8 +40,6 @@ public class PoreSquid extends PoreWaterMob implements org.bukkit.entity.Squid {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SQUID;

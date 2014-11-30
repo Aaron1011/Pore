@@ -45,8 +45,6 @@ public class PoreSpider extends PoreMonster implements org.bukkit.entity.Spider 
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SPIDER;

@@ -22,8 +22,6 @@ public class PoreSnowball extends PoreProjectile implements Snowball {
 		return converter;
 	}
 
-	//TODO: bridge
-
 	protected PoreSnowball(org.spongepowered.api.entity.projectile.Snowball handle) {
 		super(handle);
 	}

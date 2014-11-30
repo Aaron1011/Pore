@@ -1,6 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
+import net.amigocraft.pore.util.converter.entity.SkeletonConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.monster.Skeleton;
@@ -41,8 +42,6 @@ public class PoreSkeleton extends PoreMonster implements org.bukkit.entity.Skele
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SKELETON;
@@ -50,11 +49,11 @@ public class PoreSkeleton extends PoreMonster implements org.bukkit.entity.Skele
 
 	@Override
 	public SkeletonType getSkeletonType() {
-		throw new NotImplementedException();
+		return SkeletonConverter.of(getHandle().getSkeletonType());
 	}
 
 	@Override
 	public void setSkeletonType(SkeletonType type) {
-		throw new NotImplementedException();
+		getHandle().setSkeletonType(SkeletonConverter.of(type));
 	}
 }

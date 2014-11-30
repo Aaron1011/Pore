@@ -1,7 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
+import net.amigocraft.pore.util.converter.ArtConverter;
 import org.bukkit.Art;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.hanging.Painting;
@@ -42,8 +42,6 @@ public class PorePainting extends PoreHanging implements org.bukkit.entity.Paint
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.PAINTING;
@@ -51,16 +49,17 @@ public class PorePainting extends PoreHanging implements org.bukkit.entity.Paint
 
 	@Override
 	public Art getArt() {
-		throw new NotImplementedException();
+		return ArtConverter.of(getHandle().getArt());
 	}
 
 	@Override
 	public boolean setArt(Art art) {
-		throw new NotImplementedException();
+		return setArt(art, false);
 	}
 
 	@Override
 	public boolean setArt(Art art, boolean force) {
-		throw new NotImplementedException();
+		getHandle().setArt(ArtConverter.of(art));
+		return true; //TODO
 	}
 }

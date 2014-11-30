@@ -1,7 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
+import net.amigocraft.pore.util.converter.entity.OcelotConverter;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.animal.Ocelot;
 
@@ -41,8 +41,6 @@ public class PoreOcelot extends PoreTameable implements org.bukkit.entity.Ocelot
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.OCELOT;
@@ -50,21 +48,21 @@ public class PoreOcelot extends PoreTameable implements org.bukkit.entity.Ocelot
 
 	@Override
 	public Type getCatType() {
-		throw new NotImplementedException();
+		return OcelotConverter.of(getHandle().getOcelotType());
 	}
 
 	@Override
 	public void setCatType(Type type) {
-		throw new NotImplementedException();
+		getHandle().setOcelotType(OcelotConverter.of(type));
 	}
 
 	@Override
 	public boolean isSitting() {
-		throw new NotImplementedException();
+		return getHandle().isSitting();
 	}
 
 	@Override
 	public void setSitting(boolean sitting) {
-		throw new NotImplementedException();
+		getHandle().setSitting(sitting);
 	}
 }

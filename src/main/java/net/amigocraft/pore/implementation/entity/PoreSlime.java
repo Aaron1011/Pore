@@ -44,8 +44,6 @@ public class PoreSlime extends PoreLivingEntity implements org.bukkit.entity.Sli
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SLIME;
@@ -53,11 +51,11 @@ public class PoreSlime extends PoreLivingEntity implements org.bukkit.entity.Sli
 
 	@Override
 	public int getSize() {
-		throw new NotImplementedException();
+		return getHandle().getSize();
 	}
 
 	@Override
 	public void setSize(int sz) {
-		throw new NotImplementedException();
+		getHandle().setSize(sz);
 	}
 }

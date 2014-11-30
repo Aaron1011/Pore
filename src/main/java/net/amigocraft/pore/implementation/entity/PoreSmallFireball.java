@@ -40,8 +40,6 @@ public class PoreSmallFireball extends PoreFireball implements org.bukkit.entity
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.SMALL_FIREBALL;
