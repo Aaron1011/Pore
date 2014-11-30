@@ -50,42 +50,42 @@ public class PoreBoat extends PoreVehicle implements Boat {
 
 	@Override
 	public double getMaxSpeed() {
-		throw new NotImplementedException();
+		return getHandle().getMaxSpeed();
 	}
 
 	@Override
 	public void setMaxSpeed(double speed) {
-		throw new NotImplementedException();
+		getHandle().setMaxSpeed(speed);
 	}
 
 	@Override
 	public double getOccupiedDeceleration() {
-		throw new NotImplementedException();
+		return getHandle().getOccupiedDeceleration();
 	}
 
 	@Override
 	public void setOccupiedDeceleration(double rate) {
-		throw new NotImplementedException();
+		getHandle().setOccupiedDeceleration(rate);
 	}
 
 	@Override
 	public double getUnoccupiedDeceleration() {
-		throw new NotImplementedException();
+		return getHandle().getUnoccupiedDeceleration();
 	}
 
 	@Override
 	public void setUnoccupiedDeceleration(double rate) {
-		throw new NotImplementedException();
+		getHandle().setUnoccupiedDeceleration(rate);
 	}
 
 	@Override
 	public boolean getWorkOnLand() {
-		throw new NotImplementedException();
+		return getHandle().canMoveOnLand();
 	}
 
 	@Override
 	public void setWorkOnLand(boolean workOnLand) {
-		throw new NotImplementedException();
+		getHandle().setMoveOnLand(workOnLand);
 	}
 
 }

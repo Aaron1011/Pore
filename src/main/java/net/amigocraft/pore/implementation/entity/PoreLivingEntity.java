@@ -23,7 +23,7 @@ public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 	private static TypeConverter<Living, PoreLivingEntity> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<Living, PoreLivingEntity> getLivingEntityConverter() {
+	public static TypeConverter<Living, PoreLivingEntity> getLivingEntityConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Living, PoreLivingEntity>(
 					(ImmutableMap)ImmutableMap.builder()

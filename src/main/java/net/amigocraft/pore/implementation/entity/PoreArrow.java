@@ -4,8 +4,6 @@ import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
 
 public class PoreArrow extends PoreProjectile implements Arrow {
 
@@ -51,42 +49,22 @@ public class PoreArrow extends PoreProjectile implements Arrow {
 
 	@Override
 	public int getKnockbackStrength() {
-		throw new NotImplementedException();
+		return getHandle().getKnockbackStrength();
 	}
 
 	@Override
 	public void setKnockbackStrength(int knockbackStrength) {
-		throw new NotImplementedException();
+		getHandle().setKnockbackStrength(knockbackStrength);
 	}
 
 	@Override
 	public boolean isCritical() {
-		throw new NotImplementedException();
+		return getHandle().isCritical();
 	}
 
 	@Override
 	public void setCritical(boolean critical) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public LivingEntity _INVALID_getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public ProjectileSource getShooter() {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void _INVALID_setShooter(LivingEntity shooter) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void setShooter(ProjectileSource source) {
-		throw new NotImplementedException();
+		getHandle().setCritical(critical);
 	}
 
 	@Override

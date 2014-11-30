@@ -52,12 +52,12 @@ public class PoreAgeable extends PoreCreature implements Ageable {
 
 	@Override
 	public int getAge() {
-		throw new NotImplementedException();
+		return getHandle().getAge();
 	}
 
 	@Override
 	public void setAge(int age) {
-		throw new NotImplementedException();
+		getHandle().setAge(age);
 	}
 
 	@Override
@@ -72,26 +72,26 @@ public class PoreAgeable extends PoreCreature implements Ageable {
 
 	@Override
 	public void setBaby() {
-		throw new NotImplementedException();
+		getHandle().setBaby();
 	}
 
 	@Override
 	public void setAdult() {
-		throw new NotImplementedException();
+		getHandle().setAdult();
 	}
 
 	@Override
 	public boolean isAdult() {
-		throw new NotImplementedException();
+		return !getHandle().isBaby(); // erm... okay then...
 	}
 
 	@Override
 	public boolean canBreed() {
-		throw new NotImplementedException();
+		return getHandle().canBreed();
 	}
 
 	@Override
 	public void setBreed(boolean breed) {
-		throw new NotImplementedException();
+		getHandle().setBreeding(breed);
 	}
 }

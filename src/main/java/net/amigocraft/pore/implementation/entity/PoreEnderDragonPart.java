@@ -49,27 +49,27 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public void damage(double amount) {
-		throw new NotImplementedException();
+		getParent().damage(amount);
 	}
 
 	@Override
 	public void _INVALID_damage(int amount) {
-		throw new NotImplementedException();
+		this.damage((double)amount);
 	}
 
 	@Override
 	public void damage(double amount, Entity source) {
-		throw new NotImplementedException();
+		getParent().damage(amount, source);
 	}
 
 	@Override
 	public void _INVALID_damage(int amount, Entity source) {
-		throw new NotImplementedException();
+		this.damage((double)amount, source);
 	}
 
 	@Override
 	public double getHealth() {
-		throw new NotImplementedException();
+		return getParent().getHealth();
 	}
 
 	@Override
@@ -79,12 +79,12 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public void setHealth(double health) {
-		throw new NotImplementedException();
+		getParent().setHealth(health);
 	}
 
 	@Override
 	public void _INVALID_setHealth(int health) {
-		this.setHealth(health);
+		this.setHealth((double)health);
 	}
 
 	@Override
@@ -99,16 +99,16 @@ public class PoreEnderDragonPart extends PoreComplexEntityPart implements EnderD
 
 	@Override
 	public void setMaxHealth(double health) {
-		throw new NotImplementedException();
+		getParent().setMaxHealth(health);
 	}
 
 	@Override
 	public void _INVALID_setMaxHealth(int health) {
-		this.setMaxHealth(health);
+		this.setMaxHealth((double)health);
 	}
 
 	@Override
 	public void resetMaxHealth() {
-		throw new NotImplementedException();
+		getParent().resetMaxHealth();
 	}
 }

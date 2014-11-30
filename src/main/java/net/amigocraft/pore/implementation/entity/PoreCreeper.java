@@ -48,11 +48,11 @@ public class PoreCreeper extends PoreMonster implements Creeper {
 
 	@Override
 	public boolean isPowered() {
-		throw new NotImplementedException();
+		return getHandle().isPowered();
 	}
 
 	@Override
 	public void setPowered(boolean value) {
-		throw new NotImplementedException();
+		getHandle().setPowered(value);
 	}
 }

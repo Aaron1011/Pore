@@ -1,10 +1,13 @@
 package net.amigocraft.pore.implementation.entity;
 
+import javafx.scene.paint.Material;
+import net.amigocraft.pore.util.converter.MaterialConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;
+import org.spongepowered.api.item.ItemBlock;
 
 public class PoreEnderman extends PoreMonster implements Enderman {
 
@@ -51,11 +54,17 @@ public class PoreEnderman extends PoreMonster implements Enderman {
 
 	@Override
 	public MaterialData getCarriedMaterial() {
-		throw new NotImplementedException();
+		return new MaterialData(MaterialConverter.toBukkitMaterial(getHandle().getCarriedBlock().get()));
 	}
 
 	@Override
 	public void setCarriedMaterial(MaterialData material) {
-		throw new NotImplementedException();
+		ItemBlock type = (ItemBlock)MaterialConverter.toItemType(material.getItemType());
+		if (type != null) {
+			getHandle().setCarriedBlock(type);
+		}
+		else {
+			throw new UnsupportedOperationException();
+		}
 	}
 }
