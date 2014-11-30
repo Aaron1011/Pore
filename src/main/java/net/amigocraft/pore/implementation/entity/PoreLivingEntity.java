@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
@@ -9,8 +10,10 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+import org.spongepowered.api.entity.living.Agent;
 import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.complex.ComplexLiving;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,10 +22,18 @@ import java.util.List;
 public class PoreLivingEntity extends PoreEntity implements LivingEntity {
 	private static TypeConverter<Living, PoreLivingEntity> converter;
 
+	@SuppressWarnings("unchecked")
 	static TypeConverter<Living, PoreLivingEntity> getLivingEntityConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Living, PoreLivingEntity>(
-					Human.class, PoreHumanEntity.getHumanEntityConverter()
+					(ImmutableMap)ImmutableMap.builder()
+							.put(Living.class, PoreAmbient.getAmbientConverter())
+							.put(ComplexLiving.class, PoreComplexLivingEntity.getComplexLivingEntityConverter())
+							.put(Agent.class, PoreCreature.getCreatureConverter())
+							.put(Living.class, PoreFlying.getFlyingConverter())
+							.put(Human.class, PoreHumanEntity.getHumanEntityConverter())
+							.put(Slime.class, PoreSlime.getSlimeConverter())
+							.build()
 			) {
 				@Override
 				protected PoreLivingEntity convert(Living handle) {

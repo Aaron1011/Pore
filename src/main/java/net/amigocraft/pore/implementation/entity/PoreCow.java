@@ -3,6 +3,7 @@ package net.amigocraft.pore.implementation.entity;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.EntityType;
+import org.spongepowered.api.entity.living.animal.Mooshroom;
 
 public class PoreCow extends PoreAnimals implements Cow {
 
@@ -11,7 +12,9 @@ public class PoreCow extends PoreAnimals implements Cow {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<org.spongepowered.api.entity.living.animal.Cow, PoreCow> getCowConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<org.spongepowered.api.entity.living.animal.Cow, PoreCow>(){
+			converter = new TypeConverter<org.spongepowered.api.entity.living.animal.Cow, PoreCow>(
+					Mooshroom.class, PoreMushroomCow.getMushroomCowConverter()
+			){
 				@Override
 				protected PoreCow convert(org.spongepowered.api.entity.living.animal.Cow handle) {
 					return new PoreCow(handle);

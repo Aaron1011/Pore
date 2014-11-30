@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
@@ -7,6 +8,9 @@ import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
+import org.spongepowered.api.entity.projectile.fireball.LargeFireball;
+import org.spongepowered.api.entity.projectile.fireball.SmallFireball;
+import org.spongepowered.api.entity.projectile.fireball.WitherSkull;
 
 public class PoreFireball extends PoreProjectile implements Fireball {
 
@@ -15,7 +19,13 @@ public class PoreFireball extends PoreProjectile implements Fireball {
 	@SuppressWarnings("unchecked")
 	static TypeConverter<org.spongepowered.api.entity.projectile.fireball.Fireball, PoreFireball> getFireballConverter(){
 		if (converter == null) {
-			converter = new TypeConverter<org.spongepowered.api.entity.projectile.fireball.Fireball, PoreFireball>(){
+			converter = new TypeConverter<org.spongepowered.api.entity.projectile.fireball.Fireball, PoreFireball>(
+					(ImmutableMap)ImmutableMap.builder()
+					.put(LargeFireball.class, PoreLargeFireball.getLargeFireballConverter())
+					.put(SmallFireball.class, PoreSmallFireball.getSmallFireballConverter())
+					.put(WitherSkull.class, PoreWitherSkull.getWitherSkullConverter())
+					.build()
+			){
 				@Override
 				protected PoreFireball convert(org.spongepowered.api.entity.projectile.fireball.Fireball handle) {
 					return new PoreFireball(handle);

@@ -13,7 +13,7 @@ public class PoreStorageMinecart extends PoreMinecart implements StorageMinecart
 	private static TypeConverter<MinecartChest, PoreStorageMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartChest, PoreStorageMinecart> getStorageMinecartConverter() {
+	public static TypeConverter<MinecartChest, PoreStorageMinecart> getStorageMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartChest, PoreStorageMinecart>(){
 				@Override

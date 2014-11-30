@@ -1,9 +1,13 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.block.BlockFace;
 import org.spongepowered.api.entity.hanging.Hanging;
+import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.entity.hanging.LeashHitch;
+import org.spongepowered.api.entity.hanging.Painting;
 
 public class PoreHanging extends PoreEntity implements org.bukkit.entity.Hanging {
 
@@ -12,7 +16,13 @@ public class PoreHanging extends PoreEntity implements org.bukkit.entity.Hanging
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Hanging, PoreHanging> getHangingConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Hanging, PoreHanging>(){
+			converter = new TypeConverter<Hanging, PoreHanging>(
+					(ImmutableMap)ImmutableMap.builder()
+							.put(ItemFrame.class, PoreItemFrame.getItemFrameConverter())
+							.put(LeashHitch.class, PoreLeashHitch.getLeashHitchConverter())
+							.put(Painting.class, PorePainting.getPaintingConverter())
+							.build()
+			){
 				@Override
 				protected PoreHanging convert(Hanging handle) {
 					return new PoreHanging(handle);

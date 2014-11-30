@@ -10,7 +10,7 @@ public class PoreExplosiveMinecart extends PoreMinecart implements ExplosiveMine
 	private static TypeConverter<MinecartTNT, PoreExplosiveMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartTNT, PoreExplosiveMinecart> getExplosiveMinecartConverter() {
+	public static TypeConverter<MinecartTNT, PoreExplosiveMinecart> getExplosiveMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartTNT, PoreExplosiveMinecart>(){
 				@Override

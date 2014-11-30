@@ -17,7 +17,7 @@ public class PoreCommandMinecart extends PoreMinecart implements CommandMinecart
 	private static TypeConverter<MinecartCommandBlock, PoreCommandMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartCommandBlock, PoreCommandMinecart> getCommandMinecartConverter() {
+	public static TypeConverter<MinecartCommandBlock, PoreCommandMinecart> getCommandMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartCommandBlock, PoreCommandMinecart>(){
 				@Override

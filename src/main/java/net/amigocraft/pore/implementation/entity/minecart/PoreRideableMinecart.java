@@ -10,7 +10,7 @@ public class PoreRideableMinecart extends PoreMinecart implements RideableMineca
 	private static TypeConverter<MinecartRideable, PoreRideableMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartRideable, PoreRideableMinecart> getRideableMinecartConverter() {
+	public static TypeConverter<MinecartRideable, PoreRideableMinecart> getRideableMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartRideable, PoreRideableMinecart>(){
 				@Override

@@ -3,7 +3,6 @@ package net.amigocraft.pore.implementation.entity;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
-import org.spongepowered.api.entity.living.monster.Wither;
 import org.spongepowered.api.entity.projectile.fireball.WitherSkull;
 
 public class PoreWitherSkull extends PoreFireball implements org.bukkit.entity.WitherSkull {

@@ -1,20 +1,47 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ExperienceOrb;
+import org.spongepowered.api.entity.ExperienceOrb;
 
-public class PoreExperienceOrb extends PoreEntity implements ExperienceOrb {
+public class PoreExperienceOrb extends PoreEntity implements org.bukkit.entity.ExperienceOrb {
 
-	//TODO: implement after updating SpongeAPI
+	private static TypeConverter<ExperienceOrb, PoreExperienceOrb> converter;
 
-	protected PoreExperienceOrb(org.spongepowered.api.entity.Entity handle){
+	@SuppressWarnings("unchecked")
+	static TypeConverter<ExperienceOrb, PoreExperienceOrb> getExperienceOrbConverter() {
+		if (converter == null) {
+			converter = new TypeConverter<ExperienceOrb, PoreExperienceOrb>(){
+				@Override
+				protected PoreExperienceOrb convert(ExperienceOrb handle) {
+					return new PoreExperienceOrb(handle);
+				}
+			};
+		}
+		return converter;
+	}
+
+	protected PoreExperienceOrb(ExperienceOrb handle) {
 		super(handle);
 	}
 
-	public static PoreExperienceOrb of(org.spongepowered.api.entity.Entity handle){
-		throw new NotImplementedException();
+	@Override
+	public ExperienceOrb getHandle() {
+		return (ExperienceOrb)super.getHandle();
 	}
+
+	/**
+	 * Returns a Pore wrapper for the given handle.
+	 * If one exists, it will be retrieved; otherwise, a new wrapper instance will be created.
+	 * @param handle The Sponge object to wrap.
+	 * @return A Pore wrapper for the given Sponge object.
+	 */
+	public static PoreExperienceOrb of(ExperienceOrb handle) {
+		return converter.apply(handle);
+	}
+
+	//TODO: bridge
 
 	@Override
 	public EntityType getType(){

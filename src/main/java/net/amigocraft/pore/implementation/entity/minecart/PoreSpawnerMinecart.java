@@ -12,7 +12,7 @@ public class PoreSpawnerMinecart extends PoreMinecart implements SpawnerMinecart
 	private static TypeConverter<MinecartMobSpawner, PoreSpawnerMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartMobSpawner, PoreSpawnerMinecart> getSpawnerMinecartConverter() {
+	public static TypeConverter<MinecartMobSpawner, PoreSpawnerMinecart> getSpawnerMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartMobSpawner, PoreSpawnerMinecart>(){
 				@Override

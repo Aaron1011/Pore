@@ -4,6 +4,7 @@ import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.monster.Zombie;
+import org.spongepowered.api.entity.living.monster.ZombiePigman;
 
 public class PoreZombie extends PoreMonster implements org.bukkit.entity.Zombie {
 
@@ -12,7 +13,9 @@ public class PoreZombie extends PoreMonster implements org.bukkit.entity.Zombie 
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Zombie, PoreZombie> getZombieConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Zombie, PoreZombie>(){
+			converter = new TypeConverter<Zombie, PoreZombie>(
+					ZombiePigman.class, PorePigZombie.getPigZombieConverter()
+			){
 				@Override
 				protected PoreZombie convert(Zombie handle) {
 					return new PoreZombie(handle);

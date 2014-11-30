@@ -12,7 +12,7 @@ public class PoreMinecart extends PoreVehicle implements org.bukkit.entity.Minec
 	private static TypeConverter<Minecart, PoreMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<Minecart, PoreMinecart> getMinecartConverter() {
+	public static TypeConverter<Minecart, PoreMinecart> getMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Minecart, PoreMinecart>(){
 				@Override

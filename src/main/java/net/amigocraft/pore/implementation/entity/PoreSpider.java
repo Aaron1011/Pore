@@ -1,7 +1,10 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.EntityType;
+import org.spongepowered.api.entity.living.monster.CaveSpider;
+import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Spider;
 
 public class PoreSpider extends PoreMonster implements org.bukkit.entity.Spider {
@@ -11,7 +14,9 @@ public class PoreSpider extends PoreMonster implements org.bukkit.entity.Spider 
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Spider, PoreSpider> getSpiderConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Spider, PoreSpider>(){
+			converter = new TypeConverter<Spider, PoreSpider>(
+					CaveSpider.class, PoreCaveSpider.getCaveSpiderConverter()
+			){
 				@Override
 				protected PoreSpider convert(Spider handle) {
 					return new PoreSpider(handle);

@@ -3,6 +3,7 @@ package net.amigocraft.pore.implementation.entity;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
+import org.spongepowered.api.entity.living.monster.MagmaCube;
 import org.spongepowered.api.entity.living.monster.Slime;
 
 public class PoreSlime extends PoreLivingEntity implements org.bukkit.entity.Slime {
@@ -12,7 +13,9 @@ public class PoreSlime extends PoreLivingEntity implements org.bukkit.entity.Sli
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Slime, PoreSlime> getSlimeConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Slime, PoreSlime>(){
+			converter = new TypeConverter<Slime, PoreSlime>(
+					MagmaCube.class, PoreMagmaCube.getMagmaCubeConverter()
+			){
 				@Override
 				protected PoreSlime convert(Slime handle) {
 					return new PoreSlime(handle);

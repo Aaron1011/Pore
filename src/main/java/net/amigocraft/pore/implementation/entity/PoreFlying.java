@@ -1,19 +1,24 @@
 package net.amigocraft.pore.implementation.entity;
 
+import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.Flying;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.monster.Ghast;
 
 public class PoreFlying extends PoreLivingEntity implements Flying {
 
-	// Flying has no corresponding interface in SpongeAPI, defines no methods, and is only implemented by Ghast
+	// Flying has no corresponding interface in SpongeAPI, defines no methods, and is implemented only by Ghast
 
 	private static TypeConverter<Living, PoreFlying> converter;
 
 	@SuppressWarnings("unchecked")
 	static TypeConverter<Living, PoreFlying> getFlyingConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Living, PoreFlying>(){
+			converter = new TypeConverter<Living, PoreFlying>(
+					(ImmutableMap)ImmutableMap.builder()
+							.put(Ghast.class, PoreGhast.getGhastConverter())
+							.build()){
 				@Override
 				protected PoreFlying convert(Living handle) {
 					return new PoreFlying(handle);

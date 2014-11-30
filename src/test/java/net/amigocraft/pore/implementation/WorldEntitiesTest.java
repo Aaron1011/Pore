@@ -2,12 +2,10 @@ package net.amigocraft.pore.implementation;
 
 import com.google.common.collect.ImmutableList;
 import net.amigocraft.pore.implementation.entity.PoreEntity;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.spongepowered.api.entity.living.animal.Animal;
 import org.spongepowered.api.world.World;
 
 import java.util.Collection;
@@ -26,7 +24,7 @@ public class WorldEntitiesTest {
 	@Before
 	public void initTest() {
 		// Initialize converter
-		PoreEntity.getConverter();
+		PoreEntity.getEntityConverter();
 
 		// Initialize world
 		world = PoreWorld.of(mock(World.class));
@@ -51,8 +49,8 @@ public class WorldEntitiesTest {
 		List<Entity> entities = world.getEntities();
 
 		// All of the entities should be an instance of Entity
-		assertEquals(12, filter(entities, instanceOf(Entity.class)).size());
-		assertEquals(10, filter(entities, instanceOf(LivingEntity.class)).size());
+		assertEquals(16, filter(entities, instanceOf(Entity.class)).size());
+		assertEquals(14, filter(entities, instanceOf(LivingEntity.class)).size());
 		assertEquals(7, filter(entities, instanceOf(HumanEntity.class)).size());
 		assertEquals(5, filter(entities, instanceOf(Player.class)).size());
 	}
@@ -60,8 +58,8 @@ public class WorldEntitiesTest {
 	@Test
 	public void checkEntitiesByClassCounts() {
 		// This is the same as above actually
-		assertEquals(12, world.getEntitiesByClass(Entity.class).size());
-		assertEquals(10, world.getEntitiesByClass(LivingEntity.class).size());
+		assertEquals(16, world.getEntitiesByClass(Entity.class).size());
+		assertEquals(14, world.getEntitiesByClass(LivingEntity.class).size());
 		assertEquals(7, world.getEntitiesByClass(HumanEntity.class).size());
 		assertEquals(5, world.getEntitiesByClass(Player.class).size());
 	}

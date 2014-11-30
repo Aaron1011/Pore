@@ -1,9 +1,9 @@
 package net.amigocraft.pore.implementation.entity;
 
-import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.bukkit.entity.WaterMob;
 import org.spongepowered.api.entity.living.Agent;
+import org.spongepowered.api.entity.living.animal.Squid;
 
 public class PoreWaterMob extends PoreCreature implements WaterMob {
 
@@ -15,8 +15,7 @@ public class PoreWaterMob extends PoreCreature implements WaterMob {
 	static TypeConverter<Agent, PoreWaterMob> getWaterMobConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Agent, PoreWaterMob>(
-					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
-							.build()
+					Squid.class, PoreSquid.getSquidConverter()
 			){
 				@Override
 				protected PoreWaterMob convert(Agent handle) {

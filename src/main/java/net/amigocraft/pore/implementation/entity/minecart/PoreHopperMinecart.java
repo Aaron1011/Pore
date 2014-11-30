@@ -12,7 +12,7 @@ public class PoreHopperMinecart extends PoreMinecart implements HopperMinecart {
 	private static TypeConverter<MinecartHopper, PoreHopperMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartHopper, PoreHopperMinecart> getHopperMinecartConverter() {
+	public static TypeConverter<MinecartHopper, PoreHopperMinecart> getHopperMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartHopper, PoreHopperMinecart>(){
 				@Override

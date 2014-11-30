@@ -3,15 +3,10 @@ package net.amigocraft.pore.implementation.entity;
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
-import org.spongepowered.api.entity.projectile.Arrow;
-import org.spongepowered.api.entity.projectile.Egg;
-import org.spongepowered.api.entity.projectile.EnderPearl;
-import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.entity.projectile.Snowball;
-import org.spongepowered.api.entity.projectile.ThrownExpBottle;
-import org.spongepowered.api.entity.projectile.ThrownPotion;
+import org.spongepowered.api.entity.projectile.*;
 
 public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Projectile {
 
@@ -21,10 +16,12 @@ public class PoreProjectile extends PoreEntity implements org.bukkit.entity.Proj
 	static TypeConverter<Projectile, PoreProjectile> getProjectileConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Projectile, PoreProjectile>(
-					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+					(ImmutableMap)ImmutableMap.builder()
 							.put(Arrow.class, PoreArrow.getArrowConverter())
 							.put(Egg.class, PoreEgg.getEggConverter())
 							.put(EnderPearl.class, PoreEnderPearl.getEnderPearlConverter())
+							.put(Fireball.class, PoreFireball.getFireballConverter())
+							.put(FishHook.class, PoreFish.getFishConverter())
 							.put(Snowball.class, PoreSnowball.getSnowballConverter())
 							.put(ThrownExpBottle.class, PoreThrownExpBottle.getThrownExpBottleConverter())
 							.put(ThrownPotion.class, PoreThrownPotion.getThrownPotionConverter())

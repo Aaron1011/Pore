@@ -2,7 +2,7 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.spongepowered.api.entity.living.monster.Monster;
+import org.spongepowered.api.entity.living.monster.*;
 
 public class PoreMonster extends PoreCreature implements org.bukkit.entity.Monster {
 
@@ -12,7 +12,17 @@ public class PoreMonster extends PoreCreature implements org.bukkit.entity.Monst
 	static TypeConverter<Monster, PoreMonster> getMonsterConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<Monster, PoreMonster>(
-					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
+					(ImmutableMap)ImmutableMap.builder()
+							.put(Blaze.class, PoreBlaze.getBlazeConverter())
+							.put(Creeper.class, PoreCreeper.getCreeperConverter())
+							.put(Enderman.class, PoreEnderman.getEndermanConverter())
+							.put(Giant.class, PoreGiant.getGiantConverter())
+							.put(Silverfish.class, PoreSilverfish.getSilverfishConverter())
+							.put(Skeleton.class, PoreSkeleton.getSkeletonConverter())
+							.put(Spider.class, PoreSpider.getSpiderConverter())
+							.put(Witch.class, PoreWitch.getWitchConverter())
+							.put(Wither.class, PoreWither.getWitherConverter())
+							.put(Zombie.class, PoreZombie.getZombieConverter())
 							.build()
 			){
 				@Override

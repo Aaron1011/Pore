@@ -2,39 +2,37 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.spongepowered.api.entity.living.golem.Golem;
-import org.spongepowered.api.entity.living.golem.IronGolem;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.EntityType;
 import org.spongepowered.api.entity.living.golem.SnowGolem;
 
-public class PoreGolem extends PoreCreature implements org.bukkit.entity.Golem {
+public class PoreSnowman extends PoreGolem implements org.bukkit.entity.Snowman {
 
-	private static TypeConverter<Golem, PoreGolem> converter;
+	private static TypeConverter<SnowGolem, PoreSnowman> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<Golem, PoreGolem> getGolemConverter() {
+	static TypeConverter<SnowGolem, PoreSnowman> getSnowmanConverter() {
 		if (converter == null) {
-			converter = new TypeConverter<Golem, PoreGolem>(
+			converter = new TypeConverter<SnowGolem, PoreSnowman>(
 					(ImmutableMap)ImmutableMap.builder() // generified for simplicity and readability
-							.put(IronGolem.class, PoreIronGolem.getIronGolemConverter())
-							.put(SnowGolem.class, PoreSnowman.getSnowmanConverter())
 							.build()
 			){
 				@Override
-				protected PoreGolem convert(Golem handle) {
-					return new PoreGolem(handle);
+				protected PoreSnowman convert(SnowGolem handle) {
+					return new PoreSnowman(handle);
 				}
 			};
 		}
 		return converter;
 	}
 
-	protected PoreGolem(Golem handle) {
+	protected PoreSnowman(SnowGolem handle) {
 		super(handle);
 	}
 
 	@Override
-	public Golem getHandle() {
-		return (Golem)super.getHandle();
+	public SnowGolem getHandle() {
+		return (SnowGolem)super.getHandle();
 	}
 
 	/**
@@ -43,8 +41,12 @@ public class PoreGolem extends PoreCreature implements org.bukkit.entity.Golem {
 	 * @param handle The Sponge object to wrap.
 	 * @return A Pore wrapper for the given Sponge object.
 	 */
-	public static PoreGolem of(Golem handle) {
+	public static PoreSnowman of(SnowGolem handle) {
 		return converter.apply(handle);
 	}
 
+	@Override
+	public EntityType getType(){
+		return EntityType.SNOWMAN;
+	}
 }

@@ -14,8 +14,19 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+import org.spongepowered.api.entity.EnderCrystal;
+import org.spongepowered.api.entity.ExperienceOrb;
+import org.spongepowered.api.entity.FallingBlock;
+import org.spongepowered.api.entity.Item;
+import org.spongepowered.api.entity.explosive.PrimedTNT;
+import org.spongepowered.api.entity.hanging.Hanging;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.complex.ComplexLivingPart;
+import org.spongepowered.api.entity.projectile.EyeOfEnder;
+import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.weather.Lightning;
+import org.spongepowered.api.entity.weather.WeatherEffect;
 import org.spongepowered.api.util.Identifiable;
 
 import java.util.List;
@@ -27,13 +38,25 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	private static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> converter;
 
 	@SuppressWarnings("unchecked")
-	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getConverter() {
+	public static TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity> getEntityConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<org.spongepowered.api.entity.Entity, PoreEntity>(
 					(ImmutableMap)ImmutableMap.builder()
-					.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
-					.put(Projectile.class, PoreProjectile.getProjectileConverter())
-					.build()
+							.put(ComplexLivingPart.class, PoreComplexEntityPart.getComplexEntityPartConverter())
+							.put(EnderCrystal.class, PoreEnderCrystal.getEnderCrystalConverter())
+							.put(EyeOfEnder.class, PoreEnderSignal.getEnderSignalConverter())
+							.put(ExperienceOrb.class, PoreExperienceOrb.getExperienceOrbConverter())
+							.put(FallingBlock.class, PoreFallingSand.getFallingSandConverter())
+							.put(Firework.class, PoreFirework.getFireworkConverter())
+							.put(Hanging.class, PoreHanging.getHangingConverter())
+							.put(Item.class, PoreItem.getItemConverter())
+							.put(Lightning.class, PoreLightningStrike.getLightningStrikeConverter())
+							.put(Living.class, PoreLivingEntity.getLivingEntityConverter())
+							.put(Projectile.class, PoreProjectile.getProjectileConverter())
+							.put(PrimedTNT.class, PoreTNTPrimed.getTNTPrimedConverter())
+							.put(Entity.class, PoreVehicle.getVehicleConverter())
+							.put(WeatherEffect.class, PoreWeather.getWeatherConverter())
+							.build()
 			) {
 				@Override
 				protected PoreEntity convert(org.spongepowered.api.entity.Entity handle) {
@@ -61,7 +84,7 @@ public class PoreEntity extends PoreWrapper<org.spongepowered.api.entity.Entity>
 	 * @return A Pore wrapper for the given Sponge object.
 	 */
 	public static PoreEntity of(org.spongepowered.api.entity.Entity handle) {
-		return getConverter().apply(handle);
+		return getEntityConverter().apply(handle);
 	}
 
 	@Override

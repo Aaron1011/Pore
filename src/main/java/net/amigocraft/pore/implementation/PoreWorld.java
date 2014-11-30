@@ -31,6 +31,7 @@ import org.spongepowered.api.world.extent.Extent;
 
 import javax.annotation.Nullable;
 import java.io.File;
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -70,7 +71,6 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 		if (handle instanceof org.spongepowered.api.world.World) {
 			return of((org.spongepowered.api.world.World) handle);
 		}
-
 		throw new UnsupportedOperationException(); // TODO
 	}
 
@@ -86,7 +86,7 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 
 	@Override
 	public int getBlockTypeIdAt(int x, int y, int z) {
-		return getBlockAt(x, y, z).getTypeId(); //TODO: possibly rewrite this depending on how IDs are implemented in Sponge
+		return getBlockAt(x, y, z).getTypeId();
 	}
 
 	@Override
@@ -259,12 +259,15 @@ public class PoreWorld extends PoreWrapper<org.spongepowered.api.world.World> im
 	@Override
 	public List<Entity> getEntities() {
 		// TODO: Should this be unmodifiable?
-		return PoreCollections.<org.spongepowered.api.entity.Entity, Entity>transformToList(getHandle().getEntities(), PoreEntity.getConverter());
+		return PoreCollections.<org.spongepowered.api.entity.Entity, Entity>transformToList(
+				getHandle().getEntities(), PoreEntity.getEntityConverter()
+		);
 	}
 
 	@Override
 	public List<LivingEntity> getLivingEntities() {
-		// This is basically copying every time, unfortunately there is no real better way because we can't filter Lists using Guava
+		// This is basically copying every time, unfortunately there is no real better way because we can't filter
+		// Lists using Guava
 		List<LivingEntity> living = Lists.newArrayList();
 		for (org.spongepowered.api.entity.Entity e : getHandle().getEntities()) {
 			if (e instanceof org.spongepowered.api.entity.living.Living) {

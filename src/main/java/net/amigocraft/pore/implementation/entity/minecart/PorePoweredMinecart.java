@@ -11,7 +11,7 @@ public class PorePoweredMinecart extends PoreMinecart implements PoweredMinecart
 	private static TypeConverter<MinecartFurnace, PorePoweredMinecart> converter;
 
 	@SuppressWarnings("unchecked")
-	static TypeConverter<MinecartFurnace, PorePoweredMinecart> getPoweredMinecartConverter() {
+	public static TypeConverter<MinecartFurnace, PorePoweredMinecart> getPoweredMinecartConverter() {
 		if (converter == null) {
 			converter = new TypeConverter<MinecartFurnace, PorePoweredMinecart>(){
 				@Override
