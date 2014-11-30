@@ -49,6 +49,6 @@ public class PoreLightningStrike extends PoreEntity implements LightningStrike {
 
 	@Override
 	public boolean isEffect() {
-		throw new NotImplementedException();
+		return getHandle().isEffect();
 	}
 }
