@@ -5,7 +5,6 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.minecart.StorageMinecart;
 import org.bukkit.inventory.Inventory;
-import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartChest;
 
 public class PoreStorageMinecart extends PoreMinecart implements StorageMinecart {

@@ -1,7 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LightningStrike;
 import org.spongepowered.api.entity.weather.Lightning;

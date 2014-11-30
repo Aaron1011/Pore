@@ -43,8 +43,6 @@ public class PoreItem extends PoreEntity implements org.bukkit.entity.Item {
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.DROPPED_ITEM;

@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import com.google.common.collect.ImmutableMap;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Creature;
 import org.spongepowered.api.entity.living.Tameable;
@@ -57,25 +56,23 @@ public class PoreTameable extends PoreAnimals implements org.bukkit.entity.Tamea
 		return (Tameable) getHandle();
 	}
 
-	//TODO: bridge
-
 	@Override
 	public boolean isTamed() {
-		throw new NotImplementedException();
+		return getTameable().isTamed();
 	}
 
 	@Override
 	public void setTamed(boolean tame) {
-		throw new NotImplementedException();
+		getTameable().setTamed(tame);
 	}
 
 	@Override
 	public AnimalTamer getOwner() {
-		throw new NotImplementedException();
+		return PoreAnimalTamer.of(getTameable().getOwner().get());
 	}
 
 	@Override
 	public void setOwner(AnimalTamer tamer) {
-		throw new NotImplementedException();
+		getTameable().setOwner(((PoreAnimalTamer)tamer).getHandle());
 	}
 }

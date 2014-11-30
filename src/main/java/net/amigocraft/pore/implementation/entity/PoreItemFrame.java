@@ -44,8 +44,6 @@ public class PoreItemFrame extends PoreHanging implements org.bukkit.entity.Item
 		return converter.apply(handle);
 	}
 
-	//TODO: bridge
-
 	@Override
 	public EntityType getType(){
 		return EntityType.ITEM_FRAME;

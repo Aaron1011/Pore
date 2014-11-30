@@ -1,9 +1,7 @@
 package net.amigocraft.pore.implementation.entity;
 
-import javafx.scene.paint.Material;
 import net.amigocraft.pore.util.converter.MaterialConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;

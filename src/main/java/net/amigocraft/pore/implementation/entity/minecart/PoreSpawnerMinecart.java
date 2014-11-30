@@ -1,10 +1,8 @@
 package net.amigocraft.pore.implementation.entity.minecart;
 
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.minecart.SpawnerMinecart;
-import org.spongepowered.api.entity.vehicle.minecart.Minecart;
 import org.spongepowered.api.entity.vehicle.minecart.MinecartMobSpawner;
 
 public class PoreSpawnerMinecart extends PoreMinecart implements SpawnerMinecart {

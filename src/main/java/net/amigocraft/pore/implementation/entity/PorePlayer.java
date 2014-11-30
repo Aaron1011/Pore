@@ -10,7 +10,6 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.spongepowered.api.entity.player.Player;
-import org.spongepowered.api.util.Identifiable;
 
 import java.net.InetSocketAddress;
 import java.util.LinkedHashMap;

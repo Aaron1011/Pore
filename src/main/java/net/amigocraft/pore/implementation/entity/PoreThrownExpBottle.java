@@ -20,8 +20,6 @@ public class PoreThrownExpBottle extends PoreProjectile implements org.bukkit.en
 		return converter;
 	}
 
-	//TODO: bridge
-
 	protected PoreThrownExpBottle(ThrownExpBottle handle) {
 		super(handle);
 	}

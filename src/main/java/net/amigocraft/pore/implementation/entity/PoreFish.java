@@ -4,8 +4,6 @@ import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fish;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
 import org.spongepowered.api.entity.projectile.FishHook;
 
 public class PoreFish extends PoreProjectile implements Fish {

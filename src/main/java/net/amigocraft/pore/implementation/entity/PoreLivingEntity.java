@@ -5,7 +5,6 @@ import net.amigocraft.pore.util.ProjectileUtil;
 import net.amigocraft.pore.util.converter.PotionEffectTypeConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import net.amigocraft.pore.util.converter.vector.LocationFactory;
-import net.amigocraft.pore.util.converter.vector.Vector3fFactory;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;

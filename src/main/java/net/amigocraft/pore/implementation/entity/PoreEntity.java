@@ -28,7 +28,6 @@ import org.spongepowered.api.entity.projectile.Firework;
 import org.spongepowered.api.entity.projectile.Projectile;
 import org.spongepowered.api.entity.weather.Lightning;
 import org.spongepowered.api.entity.weather.WeatherEffect;
-import org.spongepowered.api.util.Identifiable;
 
 import java.util.ArrayList;
 import java.util.List;

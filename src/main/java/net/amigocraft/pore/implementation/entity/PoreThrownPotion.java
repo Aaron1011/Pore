@@ -1,5 +1,6 @@
 package net.amigocraft.pore.implementation.entity;
 
+import net.amigocraft.pore.util.converter.ItemStackConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
@@ -24,8 +25,6 @@ public class PoreThrownPotion extends PoreProjectile implements org.bukkit.entit
 		}
 		return converter;
 	}
-
-	//TODO: bridge
 
 	protected PoreThrownPotion(ThrownPotion handle) {
 		super(handle);
@@ -53,16 +52,16 @@ public class PoreThrownPotion extends PoreProjectile implements org.bukkit.entit
 
 	@Override
 	public Collection<PotionEffect> getEffects() {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //TODO
 	}
 
 	@Override
 	public ItemStack getItem() {
-		throw new NotImplementedException();
+		return ItemStackConverter.of(getHandle().getItem());
 	}
 
 	@Override
 	public void setItem(ItemStack item) {
-		throw new NotImplementedException();
+		getHandle().setItem(ItemStackConverter.of(item));
 	}
 }

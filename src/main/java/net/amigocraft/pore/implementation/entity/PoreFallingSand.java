@@ -2,7 +2,6 @@ package net.amigocraft.pore.implementation.entity;
 
 import net.amigocraft.pore.util.converter.MaterialConverter;
 import net.amigocraft.pore.util.converter.TypeConverter;
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingSand;
